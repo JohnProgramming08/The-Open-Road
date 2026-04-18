@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block body %}
+<h1>Intro page gang</h1>
+<p>{{ error }}</p>
+<form method="post" action ="/">
+	{{ form.hidden_tag() }}
+	{{ form.username.label }}
+	{{ form.username() }}
+	{{ form.password.label }}
+	{{ form.password() }}
+	{{ form.log_in() }}
+	{{ form.sign_up() }}
+</form>
+{% endblock %}
