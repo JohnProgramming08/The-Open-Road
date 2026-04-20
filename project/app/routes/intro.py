@@ -24,7 +24,7 @@ def intro():
 		if user_id == -1:
 			return render_template("index.html", form=form, error="Your login details are incorrect.")
 		
-		return "success", 200
+		return redirect(url_for("home.home", id=user_id)), 200
 	
 	# User is attempting to sign up
 	elif form.sign_up.data:
@@ -32,4 +32,4 @@ def intro():
 		if user_id == -1:
 			return render_template("index.html", form=form, error="That username is taken.")
 		
-		return "success", 200
+		return redirect(url_for("home.home", id=user_id)), 200

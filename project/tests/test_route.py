@@ -22,9 +22,9 @@ def test_index_post_valid(one_hashed_user_client, username, password, log_in, si
 	if sign_up:
 		data["sign_up"] = True
 
-	response = one_hashed_user_client.post("/", data=data, follow_redirects=True)
+	response = one_hashed_user_client.post("/", data=data, follow_redirects=False)
 	assert response.status_code == 200
-	assert b"success" in response.data # To change when home page added
+	assert "/home/" in response.headers["Location"]
 
 @pytest.mark.parametrize("username, password, log_in, sign_up, error", [
 	("Dylan", "Sigma", False, True, b"username is taken"),
@@ -48,3 +48,7 @@ def test_index_post_invalid(one_hashed_user_client, username, password, log_in, 
 	assert response.status_code == 200
 	assert error in response.data
 
+# Home page
+def test_home_get(one_owned_business_client):
+	response = one_owned_business_client.get("/home/1")
+	assert response.status_code == 200
