@@ -50,3 +50,26 @@ def test_select_businesses(one_owned_business_app):
 	assert data["type"] == "Weed"
 	assert data["location"] == "Paleto Bay"
 	assert data["price"] == 67
+
+def test_select_business_valid(one_owned_business_app):
+	with one_owned_business_app.app_context():
+		data = Select.select_business(1)
+		
+		assert data["id"] == 1
+		assert data["location"] == "Paleto Bay"
+		assert data["type"] == "Weed"
+		assert data["price"] == 67
+		assert data["description"] == "No description."
+
+def test_select_business_invalid(one_owned_business_app):
+	with one_owned_business_app.app_context():
+		assert Select.select_business(67) == {}
+
+# Fetching a users money
+def test_select_user_money_valid(one_user_app):
+	with one_user_app.app_context():
+		assert Select.select_user_money(1) == 670000
+
+def test_select_user_movey_invalid(one_user_app):
+	with one_user_app.app_context():
+		assert Select.select_user_money(67) == -1

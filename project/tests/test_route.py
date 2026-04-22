@@ -52,3 +52,15 @@ def test_index_post_invalid(one_hashed_user_client, username, password, log_in, 
 def test_home_get(one_owned_business_client):
 	response = one_owned_business_client.get("/home/1")
 	assert response.status_code == 200
+
+# Buy business page
+def test_business_page_get(one_business_user_client):
+	response = one_business_user_client.get("/buy_business/1/1")
+	assert response.status_code == 200
+
+def test_business_page_post(one_business_user_client):
+	data = {
+		"submit": True
+	}
+	response = one_business_user_client.post("/buy_business/1/1", data=data)
+	assert response.status_code == 200

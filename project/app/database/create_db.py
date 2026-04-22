@@ -43,6 +43,7 @@ class Business(db.Model):
 
 	id = db.Column(db.Integer, primary_key=True, autoincrement=True)	
 	price = db.Column(db.Integer, nullable=False) # Only add 2d.p. values
+	description = db.Column(db.String(670), default="No description.")
 
 	# Related tables
 	location_id = db.Column(db.Integer, db.ForeignKey("business_locations.id"), nullable=False)

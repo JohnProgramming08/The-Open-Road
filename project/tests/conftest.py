@@ -61,6 +61,11 @@ def one_business_user_app(business_location_type_app):
 
 	return business_location_type_app
 
+# Test client with a business and a user
+@pytest.fixture
+def one_business_user_client(one_business_user_app):
+	return one_business_user_app.test_client()
+
 # App with an owned business
 @pytest.fixture
 def one_owned_business_app(one_business_user_app):

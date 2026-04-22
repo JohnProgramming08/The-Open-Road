@@ -21,7 +21,7 @@ class Select:
 	
 	# Return data about every business the user owns
 	@staticmethod
-	def select_owned_businesses(user_id):
+	def select_owned_businesses(user_id: int) -> list[dict]:
 		owned_businesses = OwnedBusiness.query.filter(OwnedBusiness.user_id == user_id).all()
 		res = []
 		for owned_business in owned_businesses:
@@ -44,7 +44,7 @@ class Select:
 		return res
 	
 	# Get all business data
-	def select_businesses():
+	def select_businesses() -> list[dict]:
 		businesses = Business.query.all()
 		res = []
 		for business in businesses:
@@ -59,4 +59,27 @@ class Select:
 			})
 		
 		return res
+	
+	# Get buying data for a specific businiess
+	def select_business(business_id: int) -> dict:
+		business = Business.query.filter(Business.id == business_id).first()
+		if business is None:
+			return {}
+
+		res = {}
+		res["id"] = business_id
+		res["location"] = business.businesslocation.location_name
+		res["type"] = business.businesstype.type_name
+		res["price"] = business.price
+		res["description"] = business.description
+
+		return res
+	
+	# Get how much money the user has
+	def select_user_money(user_id: int) -> int:
+		user = User.query.filter(User.id == user_id).first()
+		if user is None:
+			return -1
+
+		return user.money
 	
