@@ -1,4 +1,4 @@
-from app.services import IntroService, HomeService, BuyBusinessService
+from app.services import IntroService, HomeService, BuyBusinessService, TimeService
 import pytest
 
 # Intro service
@@ -68,3 +68,43 @@ def test_buy_business(one_business_user_app):
 	with one_business_user_app.app_context():
 		service = BuyBusinessService(1, 1)
 		assert service.buy_business() == "success"
+
+# Time service
+def test_get_owned_business_data(one_owned_business_app):
+	with one_owned_business_app.app_context():
+		service = TimeService(1)
+		assert len(service.get_owned_business_data()) == 1
+
+def test_make_sale(one_owned_business_app):
+	data = {
+		"stock_level": 69,
+		"stock_value": 67,
+		"sale_started": True
+	}
+	with one_owned_business_app.app_context():
+		service = TimeService(1)
+		assert service.make_sale(data) == 67
+
+def test_resupply(one_owned_business_app):
+	data = {
+		"supplies_level": 0,
+		"supplies_bought": True
+	}
+	with one_owned_business_app.app_context():
+		service = TimeService(1)
+		assert service.resupply(data) == 67
+
+def test_setup_business(one_owned_business_app):
+	data = {
+		"status": "INACTIVE - NEEDS SETTING UP",
+		"supplies_level": 0,
+		"setup_started": True
+	}
+	with one_owned_business_app.app_context():
+		service = TimeService(1)
+		assert service.setup_business(data) == 67
+
+def test_update_owned_business_data(one_owned_business_app):
+	with one_owned_business_app.app_context():
+		service = TimeService(1)
+		assert service.update_owned_business_data() == False

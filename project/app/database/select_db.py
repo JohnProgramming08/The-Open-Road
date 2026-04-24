@@ -44,6 +44,7 @@ class Select:
 		return res
 	
 	# Get all business data
+	@staticmethod
 	def select_businesses() -> list[dict]:
 		businesses = Business.query.all()
 		res = []
@@ -61,6 +62,7 @@ class Select:
 		return res
 	
 	# Get buying data for a specific businiess
+	@staticmethod
 	def select_business(business_id: int) -> dict:
 		business = Business.query.filter(Business.id == business_id).first()
 		if business is None:
@@ -76,6 +78,7 @@ class Select:
 		return res
 	
 	# Get how much money the user has
+	@staticmethod
 	def select_user_money(user_id: int) -> int:
 		user = User.query.filter(User.id == user_id).first()
 		if user is None:
@@ -83,3 +86,33 @@ class Select:
 
 		return user.money
 	
+	# Get all of the data of an owned business related to time passed
+	@staticmethod
+	def select_owned_business_time_data(id: int) -> dict:
+		owned_business = OwnedBusiness.query.filter(id == OwnedBusiness.id).first()
+		if owned_business is None:
+			return {}
+
+		res = {}
+		res["id"] = owned_business.id
+		res["stock_level"] = owned_business.stock_level
+		res["stock_value"] = owned_business.business.businesstype.stock_value
+		res["sale_started"] = owned_business.sale_started
+		res["sale_start_time"] = owned_business.sale_start_time
+		res["supplies_level"] = owned_business.supplies_level
+		res["supplies_bought"] = owned_business.supplies_bought
+		res["supply_buy_time"] = owned_business.supply_buy_time
+		res["setup_start_time"] = owned_business.setup_start_time
+		res["setup_started"] = owned_business.setup_started
+		res["production_time"] = owned_business.business.businesstype.production_time
+		res["supply_usage"] = owned_business.business.businesstype.supply_usage
+		res["status"] = owned_business.status
+
+		return res 
+	
+	# Get the last time the user logged in
+	@staticmethod
+	def select_last_login_time(id: int) -> int:
+		user = User.query.filter(User.id == id).first()
+		
+		return user.last_login_time

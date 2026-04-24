@@ -1,5 +1,6 @@
 from app.database import Select
 import pytest
+from datetime import datetime
 
 # Fetching a user ID
 @pytest.mark.parametrize("username, password_hash, id", [
@@ -73,3 +74,22 @@ def test_select_user_money_valid(one_user_app):
 def test_select_user_movey_invalid(one_user_app):
 	with one_user_app.app_context():
 		assert Select.select_user_money(67) == -1
+
+# Fetching owned business time data
+def test_get_owned_business_time_data_valid(one_owned_business_app):
+	with one_owned_business_app.app_context():
+		data = Select.select_owned_business_time_data(1)
+		assert len(data) == 13
+		assert data["setup_started"] == False
+
+def test_get_owned_business_time_data_invalid(one_owned_business_app):
+	with one_owned_business_app.app_context():
+		data = Select.select_owned_business_time_data(67)
+		assert data == {}
+
+# Fetching users last login time
+def test_select_last_login_time(one_user_app):
+	with one_user_app.app_context():
+		time = Select.select_last_login_time(1)
+		assert time < datetime.now().timestamp()
+	

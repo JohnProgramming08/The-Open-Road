@@ -10,6 +10,7 @@ class User(db.Model):
 	username = db.Column(db.String(67), unique=True, nullable=False)
 	password_hash = db.Column(db.Integer, nullable=False)
 	money = db.Column(db.Integer, default=670000) # Start with $670,000
+	last_login_time = db.Column(db.Integer, default=int(datetime.now().timestamp()))
 
 	# Related tables
 	owned_business = db.relationship("OwnedBusiness", backref="user")
@@ -53,17 +54,18 @@ class Business(db.Model):
 class OwnedBusiness(db.Model):
 	__tablename__ = "owned_businesses"
 
-	# Change nullables to defaults
 	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 	status = db.Column(db.String(67), default="INACTIVE - PENDING SET UP")
 
 	# Stock and supplies
 	stock_level = db.Column(db.Integer, default=0)
 	sale_started = db.Column(db.Boolean, default=False)
-	sale_start_time = db.Column(db.DateTime, default=datetime.now)
+	sale_start_time = db.Column(db.Integer, default=int(datetime.now().timestamp()))
 	supplies_level = db.Column(db.Integer, default=0)
 	supplies_bought = db.Column(db.Boolean, default=False)
-	supply_buy_time = db.Column(db.DateTime, default=datetime.now)
+	supply_buy_time = db.Column(db.Integer, default=int(datetime.now().timestamp()))
+	setup_start_time = db.Column(db.Integer, default=int(datetime.now().timestamp()))
+	setup_started = db.Column(db.Boolean, default=False)
 
 	# Business stats
 	total_earnings = db.Column(db.Integer, default=0)
