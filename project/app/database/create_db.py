@@ -60,11 +60,13 @@ class OwnedBusiness(db.Model):
 	# Stock and supplies
 	stock_level = db.Column(db.Integer, default=0)
 	sale_started = db.Column(db.Boolean, default=False)
-	sale_start_time = db.Column(db.Integer, default=int(datetime.now().timestamp()))
+	sale_finish_time = db.Column(db.Integer, default=int(datetime.now().timestamp()))
+	sale_distance = db.Column(db.String(5), default="67") # close / far
+	sale_location = db.Column(db.String(13), default="67") # Los Santos / Blaine County
 	supplies_level = db.Column(db.Integer, default=0)
 	supplies_bought = db.Column(db.Boolean, default=False)
-	supply_buy_time = db.Column(db.Integer, default=int(datetime.now().timestamp()))
-	setup_start_time = db.Column(db.Integer, default=int(datetime.now().timestamp()))
+	supply_arrive_time = db.Column(db.Integer, default=int(datetime.now().timestamp()))
+	setup_finish_time = db.Column(db.Integer, default=int(datetime.now().timestamp()))
 	setup_started = db.Column(db.Boolean, default=False)
 
 	# Business stats

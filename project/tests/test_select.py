@@ -79,7 +79,7 @@ def test_select_user_movey_invalid(one_user_app):
 def test_get_owned_business_time_data_valid(one_owned_business_app):
 	with one_owned_business_app.app_context():
 		data = Select.select_owned_business_time_data(1)
-		assert len(data) == 13
+		assert len(data) == 23
 		assert data["setup_started"] == False
 
 def test_get_owned_business_time_data_invalid(one_owned_business_app):
@@ -93,3 +93,8 @@ def test_select_last_login_time(one_user_app):
 		time = Select.select_last_login_time(1)
 		assert time < datetime.now().timestamp()
 	
+# Fetching owned business summary data
+def test_select_summary_data(one_owned_business_app):
+	with one_owned_business_app.app_context():
+		assert len(Select.select_summary_data(1)) == 11
+		

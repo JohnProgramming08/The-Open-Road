@@ -19,12 +19,20 @@ def test_update_last_login_time(one_user_app):
 # Changing owned businesses time based data
 def test_update_business_time_data(one_owned_business_app):
 	data = {
-		"stock_level": 67,
+		"total_earnings": 4132,
+		"stock_level": 100,
+		"total_sales": 4, 
+		"total_los_santos_sales": 3,
+		"successful_los_santos_sales": 0,
+		"total_blaine_county_sales": 1,
+		"successful_blaine_county_sales": 1,
 		"sale_started": False,
+		"total_resupplies": 4,
+		"successful_resupplies": 4,
 		"supplies_level": 67,
-		"supplies_bought": False,
+		"supplies_bought": True,
 		"setup_started": False,
-		"status": "ACTIVE" 
+		"status": "ACTIVE"
 	}
 
 	with one_owned_business_app.app_context():

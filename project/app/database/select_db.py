@@ -95,14 +95,27 @@ class Select:
 
 		res = {}
 		res["id"] = owned_business.id
+		res["total_earnings"] = owned_business.total_earnings
 		res["stock_level"] = owned_business.stock_level
 		res["stock_value"] = owned_business.business.businesstype.stock_value
+		
+		res["total_sales"] = owned_business.total_sales
+		res["total_los_santos_sales"] = owned_business.total_los_santos_sales
+		res["successful_los_santos_sales"] = owned_business.successful_los_santos_sales
+		res["total_blaine_county_sales"] = owned_business.total_blaine_county_sales
+		res["successful_blaine_county_sales"] = owned_business.successful_blaine_county_sales
 		res["sale_started"] = owned_business.sale_started
-		res["sale_start_time"] = owned_business.sale_start_time
+		res["sale_finish_time"] = owned_business.sale_finish_time
+		res["sale_distance"] = owned_business.sale_distance
+		res["sale_location"] = owned_business.sale_location
+		
+		res["total_resupplies"] = owned_business.total_resupplies
+		res["successful_resupplies"] = owned_business.successful_resupplies
 		res["supplies_level"] = owned_business.supplies_level
 		res["supplies_bought"] = owned_business.supplies_bought
-		res["supply_buy_time"] = owned_business.supply_buy_time
-		res["setup_start_time"] = owned_business.setup_start_time
+		res["supply_arrive_time"] = owned_business.supply_arrive_time
+		
+		res["setup_finish_time"] = owned_business.setup_finish_time
 		res["setup_started"] = owned_business.setup_started
 		res["production_time"] = owned_business.business.businesstype.production_time
 		res["supply_usage"] = owned_business.business.businesstype.supply_usage
@@ -116,3 +129,39 @@ class Select:
 		user = User.query.filter(User.id == id).first()
 		
 		return user.last_login_time
+
+	# Get the summary data for an owned business
+	@staticmethod
+	def select_summary_data(id: int) -> dict:
+		business = OwnedBusiness.query.filter(OwnedBusiness.id == id).first()
+		if business.total_resupplies != 0:
+			resupply_success_rate = int((business.successful_resupplies / business.total_resupplies) * 100)
+		else:
+			resupply_success_rate = 0
+		
+		if business.total_los_santos_sales != 0:
+			sell_success_rate_los_santos = int((business.successful_los_santos_sales / business.total_los_santos_sales) * 100)
+		else:
+			sell_success_rate_los_santos = 0
+		
+		if business.total_blaine_county_sales != 0:
+			sell_success_rate_blaine_county = int((business.successful_blaine_county_sales / business.total_blaine_county_sales) * 100)
+		else:
+			sell_success_rate_blaine_county = 0
+
+		res = {
+			"status": business.status,
+			"stock_level": business.stock_level,
+			"supplies_level": business.supplies_level,
+			"total_earnings": business.total_earnings,
+			"total_sales": business.total_sales,
+			"resupply_success_rate": resupply_success_rate,
+			"sell_success_rate_los_santos": sell_success_rate_los_santos,
+			"sell_success_rate_blaine_county": sell_success_rate_blaine_county,
+			"production_ceased_supplies": business.production_ceased_supplies,
+			"production_ceased_raided": business.production_ceased_raided,
+			"production_ceased_capacity": business.production_ceased_capacity
+		}
+
+		return res
+		

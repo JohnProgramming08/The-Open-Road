@@ -78,6 +78,14 @@ def test_get_owned_business_data(one_owned_business_app):
 def test_make_sale(one_owned_business_app):
 	data = {
 		"stock_level": 69,
+		"sale_distance": "far",
+		"total_earnings": 670,
+		"total_sales": 2,
+		"sale_destination": "Los Santos",
+		"total_los_santos_sales": 2,
+		"successful_los_santos_sales": 2,
+		"total_blaine_county_sales": 0,
+		"successful_blaine_county_sales": 0,
 		"stock_value": 67,
 		"sale_started": True
 	}
@@ -88,11 +96,23 @@ def test_make_sale(one_owned_business_app):
 def test_resupply(one_owned_business_app):
 	data = {
 		"supplies_level": 0,
-		"supplies_bought": True
+		"supplies_bought": True,
+		"total_resupplies": 2,
+		"successful_resupplies": 2
 	}
 	with one_owned_business_app.app_context():
 		service = TimeService(1)
 		assert service.resupply(data) == 67
+
+def test_make_product(one_owned_business_app):
+	data = {
+		"stock_level": 1,
+		"supply_level": 12,
+		"supply_usage": 4
+	}
+	with one_owned_business_app.app_context():
+		service = TimeService(1)
+		assert service.make_product(data) == 67
 
 def test_setup_business(one_owned_business_app):
 	data = {

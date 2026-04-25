@@ -1,7 +1,7 @@
 from app.database import Update, Select
 from datetime import datetime
 
-# Still needs testing
+
 class TimeService:
 	def __init__(self, user_id: int):
 		self.user_id = user_id
@@ -20,11 +20,23 @@ class TimeService:
 	# Add sale money to users account and reset stock
 	def make_sale(self, business: dict) -> int:
 		money_made = business["stock_level"] * business["stock_value"]
+		if business["sale_distance"] == "far":
+			money_made *= 1.5
+
 		user_money = Select.select_user_money(self.user_id)
 		Update.update_money(self.user_id, money_made + user_money)
 
+		# Update business data
 		business["stock_level"] = 0
 		business["sale_started"] = False
+		business["total_earnings"] += money_made
+		business["total_sales"] += 1
+		if business["sale_destination"] == "Los Santos":
+			business["total_los_santos_sales"] += 1
+			business["successful_los_santos_sales"] += 1
+		else:
+			business["total_blaine_county_sales"] += 1
+			business["successful_blaine_county_sales"] += 1
 
 		return 67
 
@@ -32,9 +44,18 @@ class TimeService:
 	def resupply(self, business: dict) -> int:
 		business["supplies_level"] = 100
 		business["supplies_bought"] = False
+		business["total_resupplies"] += 1
+		business["successful_resupplies"] += 1
 
 		return 67
+	
+	# Produce a unit of product
+	def make_product(self, business: dict) -> int:
+		business["stock_level"] += 1
+		business["supply_level"] -= business["supply_usage"]
 
+		return 67
+	
 	# Setup the business
 	def setup_business(self, business: dict) -> bool:
 		business["status"] = "ACTIVE"
@@ -52,24 +73,33 @@ class TimeService:
 		time_difference = current_time - last_login_time
 
 		for business in self.business_data:
-			# Check whether each update needs to be made
-			if current_time > business["sale_start_time"] + 1200 and business["sale_started"]:
+			# Sale made
+			if current_time > business["sale_finish_time"] and business["sale_started"]:
 				change_made = True
 				self.make_sale(business)
 
-			if current_time > business["supply_buy_time"] + 1500 and business["supplies_bought"]:
+			# Product being made before supplies arrived
+			while time_difference > business["production_time"] and business["supply_level"] > business["supply_usage"] and business["stock_level"] < 100:
+				change_made = True
+				time_difference -= business["production_time"]
+				self.make_product(business)
+
+			# Supplies arrived
+			if current_time > business["supply_arrive_time"] and business["supplies_bought"]:
 				change_made = True
 				self.resupply(business)
 
-			if current_time > business["setup_start_time"] + 600 and business["setup_started"]:
+			# Business has been setup
+			if current_time > business["setup_finish_time"] and business["setup_started"]:
 				change_made = True
+				time_difference -= 600
 				self.setup_business(business)
 
+			# Product being made after supplies arrived
 			while time_difference > business["production_time"] and business["supply_level"] > business["supply_usage"] and business["stock_level"] < 100:
 				change_made = True
-				business["stock_level"] += 1
 				time_difference -= business["production_time"]
-				business["supply_level"] -= business["supply_usage"]
+				self.make_product(business)
 
 			# Only update the database if a change was made
 			if change_made:
