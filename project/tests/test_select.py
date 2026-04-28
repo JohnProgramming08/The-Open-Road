@@ -96,5 +96,9 @@ def test_select_last_login_time(one_user_app):
 # Fetching owned business summary data
 def test_select_summary_data(one_owned_business_app):
 	with one_owned_business_app.app_context():
-		assert len(Select.select_summary_data(1)) == 11
-		
+		assert len(Select.select_summary_data(1)) == 13
+
+# Fetching owned business upgrades data
+def test_select_upgrades_data(one_owned_business_app):
+	with one_owned_business_app.app_context():
+		assert len(Select.select_upgrades_data(1)) == 9

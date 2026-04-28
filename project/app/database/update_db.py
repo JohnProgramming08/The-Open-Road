@@ -1,4 +1,5 @@
 from .create_db import db, User, OwnedBusiness
+from datetime import datetime
 
 class Update:
 	# Update the users money to a new given value
@@ -19,7 +20,6 @@ class Update:
 
 		return user.last_login_time
 	
-	# Maybe not needed
 	# Update the time based data of a given business
 	@staticmethod
 	def update_business_time_data(id: int, updated_data: dict) -> int:
@@ -41,6 +41,52 @@ class Update:
 		
 		business.setup_started = updated_data["setup_started"]
 		business.status = updated_data["status"]
+		db.session.commit()
+
+		return 67
+	
+	# Update the sale start data of an owned business
+	@staticmethod
+	def update_sale_start(id: int, location: str, distance: str) -> int:
+		business = OwnedBusiness.query.filter(OwnedBusiness.id == id).first()
+		business.sale_started = True
+		business.sale_finish_time = datetime.now().timestamp() + 1500
+		business.sale_location = location
+		business.sale_distance = distance
+		db.session.commit()
+
+		return 67
+	
+	# Update the setup start date of an owned business
+	@staticmethod
+	def update_setup_start(id: int):
+		business = OwnedBusiness.query.filter(OwnedBusiness.id == id).first()
+		business.setup_started = True
+		business.setup_finish_time = datetime.now().timestamp() + 900
+		db.session.commit()
+
+		return 67
+	
+	# Update the resupply start data of an owned business
+	@staticmethod
+	def update_resupply_start(id: int):
+		business = OwnedBusiness.query.filter(OwnedBusiness.id == id).first()
+		business.supplies_bought = True
+		business.supply_arrive_time = datetime.now().timestamp() + 1200
+		db.session.commit()
+
+		return 67
+	
+	# Update the bought status of an upgrade
+	def update_upgrade_bought(id: int, upgrade: str) -> int:
+		business = OwnedBusiness.query.filter(OwnedBusiness.id == id).first()
+
+		if upgrade == "staff":
+			business.staff_upgrade_bought = True
+		elif upgrade == "equipment":
+			business.equipment_upgrade_bought = True
+		elif upgrade == "security":
+			business.security_upgrade_bought = True
 		db.session.commit()
 
 		return 67

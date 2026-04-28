@@ -1,4 +1,4 @@
-from app.services import IntroService, HomeService, BuyBusinessService, TimeService
+from app.services import BusinessManagementService, IntroService, HomeService, BuyBusinessService, TimeService
 import pytest
 
 # Intro service
@@ -128,3 +128,43 @@ def test_update_owned_business_data(one_owned_business_app):
 	with one_owned_business_app.app_context():
 		service = TimeService(1)
 		assert service.update_owned_business_data() == False
+
+# Business management service
+def test_get_summary_data(one_owned_business_app):
+	with one_owned_business_app.app_context():
+		service = BusinessManagementService(1)
+		assert len(service.get_summary_data()) == 13
+
+@pytest.mark.parametrize("location, distance", [
+	("Los Santos", "far"),
+	("Los Santos", "close"),
+	("Blaine County", "far"),
+	("Blaine County", "close")
+])
+def test_start_sale(one_owned_business_app, location, distance):
+	with one_owned_business_app.app_context():
+		service = BusinessManagementService(1)
+		sale_made = service.start_sale(location, distance)
+		assert sale_made == 67
+
+def test_start_resupply(one_owned_business_app):
+	with one_owned_business_app.app_context():
+		service = BusinessManagementService(1)
+		assert service.start_resupply() == 67
+
+def test_start_setup(one_owned_business_app):
+	with one_owned_business_app.app_context():
+		service = BusinessManagementService(1)
+		assert service.start_setup() == 67
+
+@pytest.mark.parametrize("upgrade", [
+	"Security",
+	"security",
+	"staff",
+	"equipment",
+	"Literally that guy"
+])
+def test_buy_upgrade(one_owned_business_app, upgrade):
+	with one_owned_business_app.app_context():
+		service = BusinessManagementService(1)
+		assert service.buy_upgrade(upgrade) == 67

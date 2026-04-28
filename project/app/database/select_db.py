@@ -150,6 +150,8 @@ class Select:
 			sell_success_rate_blaine_county = 0
 
 		res = {
+			"location": business.business.businesslocation.location_name,
+			"type": business.business.businesstype.type_name,
 			"status": business.status,
 			"stock_level": business.stock_level,
 			"supplies_level": business.supplies_level,
@@ -164,4 +166,26 @@ class Select:
 		}
 
 		return res
-		
+	
+	# Get the upgrades data for an owned business
+	def select_upgrades_data(id: int) -> dict:
+		business = OwnedBusiness.query.filter(OwnedBusiness.id == id).first()
+		staff_description = business.business.businesstype.staff_upgrade_description
+		staff_price = business.business.businesstype.staff_upgrade_price
+		security_description = business.business.businesstype.security_upgrade_description
+		security_price = business.business.businesstype.security_upgrade_price
+		equipment_description = business.business.businesstype.equipment_upgrade_description
+		equipment_price = business.business.businesstype.equipment_upgrade_price
+
+		return {
+			"staff_description": staff_description,
+			"staff_price": staff_price,
+			"staff_bought": business.staff_upgrade_bought,
+			"security_description": security_description,
+			"security_price": security_price,
+			"security-bought": business.security_upgrade_bought,
+			"equipment_description": equipment_description,
+			"equipment_price": equipment_price,
+			"equipment_bought": business.equipment_upgrade_bought
+		}
+	

@@ -24,8 +24,11 @@ class BusinessType(db.Model):
 	stock_value = db.Column(db.Integer, nullable=False) # Value of one stock unit
 	supply_usage = db.Column(db.Integer, nullable=False) # Supplies used for one stock unit
 	equipment_upgrade_price = db.Column(db.Integer, nullable=False)
+	equipment_upgrade_description = db.Column(db.String(670), default="No description.")
 	staff_upgrade_price = db.Column(db.Integer, nullable=False)
+	staff_upgrade_description = db.Column(db.String(670), default="No description.")
 	security_upgrade_price = db.Column(db.Integer, nullable=False)
+	security_upgrade_description = db.Column(db.String(670), default="No description")
 
 	# Related tables
 	business = db.relationship("Business", backref="businesstype")

@@ -64,3 +64,27 @@ def test_business_page_post(one_business_user_client):
 	}
 	response = one_business_user_client.post("/buy_business/1/1", data=data)
 	assert response.status_code == 200
+
+# Business management page
+def test_management_page_get(one_owned_business_client):
+	response = one_owned_business_client.get("/business_management/1/1")
+	assert response.status_code == 200
+
+@pytest.mark.parametrize("button_clicked, location", [
+	("setup", ""),
+	("resupply", ""),
+	("sell", "los_santos"),
+	("sell", "blaine_county"),
+	("security", ""),
+	("staff", ""),
+	("equipment", "")
+])
+def test_management_page_post(one_owned_business_client, button_clicked, location):
+	data = {
+		"button_clicked": button_clicked,
+		"submit": True,
+		"location": location
+	}
+
+	response = one_owned_business_client.post("/business_management/1/1", data=data)
+	assert response.status_code == 200

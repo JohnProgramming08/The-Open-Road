@@ -37,3 +37,34 @@ def test_update_business_time_data(one_owned_business_app):
 
 	with one_owned_business_app.app_context():
 		assert Update.update_business_time_data(1, data) == 67
+
+# Changing a businesses start process data
+@pytest.mark.parametrize("location, distance", [
+	("Los Santos", "far"),
+	("Los Santos", "close"),
+	("Blaine County", "far"),
+	("Blaine County", "close")
+])
+def test_update_sale_start(one_owned_business_app, location, distance):
+	with one_owned_business_app.app_context():
+		assert Update.update_sale_start(1, location, distance) == 67
+
+def test_update_setup_start(one_owned_business_app):
+	with one_owned_business_app.app_context():
+		assert Update.update_setup_start(1) == 67
+
+def test_update_resupply_start(one_owned_business_app):
+	with one_owned_business_app.app_context():
+		assert Update.update_resupply_start(1) == 67
+
+# Changing a businesses bought upgrades
+@pytest.mark.parametrize("upgrade", [
+	"Staff",
+	"staff",
+	"equipment",
+	"security",
+	"shiva"
+])
+def test_update_upgrade_bought(one_owned_business_app, upgrade):
+	with one_owned_business_app.app_context():
+		assert Update.update_upgrade_bought(1, upgrade) == 67
