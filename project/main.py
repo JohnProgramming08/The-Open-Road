@@ -1,6 +1,8 @@
+from app import create_app
 def main():
-    print("Hello from project!")
+	app = create_app()
+	app.run(debug=True)
 
 
 if __name__ == "__main__":
-    main()
+	main()

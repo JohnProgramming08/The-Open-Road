@@ -27,16 +27,8 @@ def business_management(user_id: int, owned_business_id: int):
 			service.start_resupply()
 
 		case "sell":
-			# Determine distance of sale
+			distance = form.distance.data
 			location = form.location.data
-			if location == "blaine_county" and summary_data["location"] == "Blaine County":
-				distance = "close"
-			elif location == "blaine_county":
-				distance = "far"
-			elif location == "los_santos" and summary_data["location"] == "Los Santos":
-				distance = "close"
-			elif location == "los_santos":
-				distance = "far"
 
 			service.start_sale(location, distance)
 

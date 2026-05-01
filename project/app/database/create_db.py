@@ -22,7 +22,7 @@ class BusinessType(db.Model):
 	type_name = db.Column(db.String(67), unique=True, nullable=False)
 	production_time = db.Column(db.Integer, nullable=False) # Time taken for one stock unit
 	stock_value = db.Column(db.Integer, nullable=False) # Value of one stock unit
-	supply_usage = db.Column(db.Integer, nullable=False) # Supplies used for one stock unit
+	supply_usage = db.Column(db.Float, nullable=False) # Supplies used for one stock unit
 	equipment_upgrade_price = db.Column(db.Integer, nullable=False)
 	equipment_upgrade_description = db.Column(db.String(670), default="No description.")
 	staff_upgrade_price = db.Column(db.Integer, nullable=False)

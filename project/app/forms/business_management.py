@@ -16,5 +16,9 @@ class BusinessManagementForm(FlaskForm):
 		("blaine_county", "Blaine County"),
 		("los_santos", "Los Santos")
 	])
+	distance = RadioField(choices=[
+		("close", "Close"),
+		("far", "Far")
+	])
 	
 	submit = SubmitField("Confirm")
