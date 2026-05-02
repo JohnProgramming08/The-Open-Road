@@ -189,3 +189,13 @@ class Select:
 			"equipment_bought": business.equipment_upgrade_bought
 		}
 	
+	# Both still need testing
+	# Get the id of a given business location
+	def select_business_location_id(location_name: str) -> int:
+		location = BusinessLocation.query.filter(location_name == BusinessLocation.location_name).first()
+		return location.id
+	
+	# Get the id of a given business_type
+	def select_business_type_id(type_name: str) -> int:
+		type = BusinessType.query.filter(type_name == BusinessType.type_name).first()
+		return type.id

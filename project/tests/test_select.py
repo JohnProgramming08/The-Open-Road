@@ -102,3 +102,13 @@ def test_select_summary_data(one_owned_business_app):
 def test_select_upgrades_data(one_owned_business_app):
 	with one_owned_business_app.app_context():
 		assert len(Select.select_upgrades_data(1)) == 9
+
+# Fetching a business locations id
+def test_select_business_location_id(one_business_user_app):
+	with one_business_user_app.app_context():
+		assert Select.select_business_location_id("Paleto Bay") == 1
+
+# Fetching a business type id
+def test_select_business_type_id(one_business_user_app):
+	with one_business_user_app.app_context():
+		assert Select.select_business_type_id("Weed") == 1

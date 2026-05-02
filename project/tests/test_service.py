@@ -1,4 +1,4 @@
-from app.services import BusinessManagementService, IntroService, HomeService, BuyBusinessService, TimeService
+from app.services import AddBusinessesService, BusinessManagementService, IntroService, HomeService, BuyBusinessService, TimeService
 import pytest
 
 # Intro service
@@ -168,3 +168,21 @@ def test_buy_upgrade(one_owned_business_app, upgrade):
 	with one_owned_business_app.app_context():
 		service = BusinessManagementService(1)
 		assert service.buy_upgrade(upgrade) == 67
+
+# Add businesses service
+def test_add_business_types(app):
+	service = AddBusinessesService()
+	with app.app_context():
+		assert service.add_business_types() == 67
+
+def test_add_business_locations(app):
+	service = AddBusinessesService()
+	with app.app_context():
+		assert service.add_business_locations() == 67
+
+def test_add_businesses(app):
+	service = AddBusinessesService()
+	with app.app_context():
+		assert service.add_business_locations() == 67
+		assert service.add_business_types() == 67
+		assert service.add_businesses() == 67

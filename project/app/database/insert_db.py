@@ -30,8 +30,11 @@ class Insert:
 	
 	# Add a new business to the database
 	@staticmethod
-	def insert_business(price: int, location_id: int, type_id: int) -> int:
-		new_business = Business(price=price, location_id=location_id, type_id=type_id)
+	def insert_business(price: int, location_id: int, type_id: int, description: str = None) -> int:
+		if description is None:
+			new_business = Business(price=price, location_id=location_id, type_id=type_id)
+		else:
+			new_business = Business(price=price, location_id=location_id, type_id=type_id, description=description)
 		db.session.add(new_business)
 		db.session.commit()
 

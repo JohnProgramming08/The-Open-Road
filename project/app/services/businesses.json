@@ -1,0 +1,187 @@
+{
+	"business_types": [
+		{
+			"type_name": "Cocaine Lockup",
+			"production_time": 300,
+			"stock_value": 2700,
+			"supply_usage": 2.5,
+			"equipment_upgrade_price": 935000,
+			"staff_upgrade_price": 390000,
+			"security_upgrade_price": 570000
+		},
+		{
+			"type_name": "Counterfeit Cash Factory",
+			"production_time": 288,
+			"stock_value": 1890,
+			"supply_usage": 2.5,
+			"equipment_upgrade_price": 880000,
+			"staff_upgrade_price": 273000,
+			"security_upgrade_price": 456000
+		},
+		{
+			"type_name": "Document Forgery Office",
+			"production_time": 180,
+			"stock_value": 810,
+			"supply_usage": 2,
+			"equipment_upgrade_price": 550000, 
+			"staff_upgrade_price": 195000,
+			"security_upgrade_price": 285000
+		},
+		{
+			"type_name": "Methamphetamine Lab",
+			"production_time": 360,
+			"stock_value": 2295,
+			"supply_usage": 2.5,
+			"equipment_upgrade_price": 1100000,
+			"staff_upgrade_price": 331500,
+			"security_upgrade_price": 513000
+		},
+		{
+			"type_name": "Weed Farm",
+			"production_time": 288,
+			"stock_value": 1620,
+			"supply_usage": 2.5,
+			"equipment_upgrade_price": 990000,
+			"staff_upgrade_price": 273000,
+			"security_upgrade_price": 313500
+		}
+	],
+	"business_locations": [
+		"Grapeseed",
+		"Paleto Bay",
+		"Elysian Island",
+		"Textile City",
+		"San Chianski Mountain Range",
+		"Mount Chiliad",
+		"Downtown Vinewood",
+		"Grand Senora Desert",
+		"Cypress Flats",
+		"Vespucci Canals",
+		"Terminal",
+		"El Burro Heights",
+		"Alamo Sea",
+		"Morningwood"
+	],
+	"businesses": [
+		{
+			"price": 650000,
+			"description": "dead-end lot in a dead-end corner of SA. perfect setup for doc work. surrounded by meth labs and rug n tug joints so the cops wont give a shit about you.",
+			"location_name": "Grapeseed",
+			"type_name": "Document Forgery Office"
+		},
+		{
+			"price": 732000,
+			"description": "cozy little workshop in the land that cops forgot. perfect place to work on your copypaste in peace and quiet. make it here, and the northern market is yours.",
+			"location_name": "Paleto Bay",
+			"type_name": "Document Forgery Office"
+		},
+		{
+			"price": 975000,
+			"description": "old warehouse near the docks with big potential for scratching out a buttload of IDs. be a 1 stop shop for the illegals dashing out of every second shipping container.",
+			"location_name": "Elysian Island",
+			"type_name": "Document Forgery Office"
+		},
+		{
+			"price": 1235000,
+			"description": "tight little setup dug into the side of textile city. great central location. permanent scaffolding out front to keep things low key.",
+			"location_name": "Textile City",
+			"type_name": "Document Forgery Office"
+		},
+		{
+			"price": 715000,
+			"description": "if the locals dont skin you this shack will sit nicely under the radar for years to come. room for a decent crop and already hot and wet as hell so youll save big on the humidifier bill.",
+			"location_name": "San Chianski Mountain Range",
+			"type_name": "Weed Farm"
+		},
+		{
+			"price": 805200,
+			"description": "budding herb shed tucked just under nowheres asshole. quiet, good humidity, loads of paperless workers nearby.",
+			"location_name": "Mount Chiliad",
+			"type_name": "Weed Farm"
+		},
+		{
+			"price": 1072500,
+			"description": "easy in, easy out, no customs, plenty of space. an aspiring growers dream. good dockland access and cops think its just a sweatshop rofl so go nuts.",
+			"location_name": "Elysian Island",
+			"type_name": "Weed Farm"
+		},
+		{
+			"price": 1358500,
+			"description": "last grower got shot in the neck just inside the front door so selling this on at cost. tidy little outfit for the ambitious horticulturalist. ideal for a startup.",
+			"location_name": "Downtown Vinewood",
+			"type_name": "Weed Farm"
+		},
+		{
+			"price": 845000,
+			"description": "every idiot knows the economy is already on the brink and with the right leadership this hellhole could print enough cold cash to sink it in a few months. bring it on.",
+			"location_name": "Grand Senora Desert",
+			"type_name": "Counterfeit Cash Factory"
+		},
+		{
+			"price": 951600,
+			"description": "still registered as a utilities station. if you wanna print bills then cover doesnt get better than this. thick walls so no one will hear the driers or the shots.",
+			"location_name": "Paleto Bay",
+			"type_name": "Counterfeit Cash Factory"
+		},
+		{
+			"price": 1267500,
+			"description": "old depot in a neighborhood where no ones stupid enough to ask questions. light prep work needed and youll be doing some serious quantitative easing in no time.",
+			"location_name": "Cypress Flats",
+			"type_name": "Counterfeit Cash Factory"
+		},
+		{
+			"price": 1605000,
+			"description": "tidy beachside lockup for a boutique printer. all the hippies around here would think a crayon sketch of a dollar bill is legit so what are you waiting for?",
+			"location_name": "Vespucci Canals",
+			"type_name": "Counterfeit Cash Factory"
+		},
+		{
+			"price": 910000,
+			"description": "big old shack thats found its calling as a low-profile, high-ceiling lab. youre a ways from the nearest pharmacy if you run out supplies so stock up.",
+			"location_name": "Grand Senora Desert",
+			"type_name": "Methamphetamine Lab"
+		},
+		{
+			"price": 1024800,
+			"description": "know how much ice pays off a liberal arts degree? this places turnover should have you covered in just a couple years. big quiet factory. feds have forgotten it exists.",
+			"location_name": "Paleto Bay",
+			"type_name": "Methamphetamine Lab"
+		},
+		{
+			"price": 1365000,
+			"description": "slick new warehouse. this place has got superlab written all over it. youll only have merchant seaman and sex traffickers for company but theyre your biggest customers anyways.",
+			"location_name": "Terminal",
+			"type_name": "Methamphetamine Lab"
+		},
+		{
+			"price": 1729000,
+			"description": "old derelict perfect for cooking shit. neighbors are half dead with the smog so no ones going to notice a little extra toxicity lol.",
+			"location_name": "El Burro Heights",
+			"type_name": "Methamphetamine Lab"
+		},
+		{
+			"price": 975000,
+			"description": "fort just over the hill but screw it this is prime real estate for an up and coming producer. doesnt look like much but that’s a good thing right? lots of trade from passing grunts.",
+			"location_name": "Alamo Sea",
+			"type_name": "Cocaine Lockup"
+		},
+		{
+			"price": 1098000,
+			"description": "old storage outfit perfect for the rookie or the old hand. amenities, battery recycling, gun store and not much else nearby.",
+			"location_name": "Paleto Bay",
+			"type_name": "Cocaine Lockup"
+		},
+		{
+			"price": 1462500,
+			"description": "forget your hipster dreams of a tarp-covered shack in the South American jungle. this is the real deal. large industrial premises for a chemist with some ambition.",
+			"location_name": "Elysian Island",
+			"type_name": "Cocaine Lockup"
+		},
+		{
+			"price": 1852500,
+			"description": "nice little dive in the fancy part of town. great start for a classy powder shop. pissing distance from all your dealers and their clients.",
+			"location_name": "Morningwood",
+			"type_name": "Cocaine Lockup"
+		}
+	]
+}
