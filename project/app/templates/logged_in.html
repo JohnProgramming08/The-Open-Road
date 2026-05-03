@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block style %}
+<p>style stuff</p>
+{% block style2 %}{% endblock %}
+{% endblock %}
+
+{% block body %}
+<header>
+	<p>Header stuff</p>
+</header>
+
+<main>
+	{% block main %}{% endblock %}
+</main>
+{% endblock %}

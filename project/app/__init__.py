@@ -21,8 +21,8 @@ def create_app(config_overlay=None):
     db.init_app(app)
     with app.app_context():
         db.create_all()
-        #print("Got here")
         service = AddBusinessesService()
+        # Populate database with businesses
         #service.add_business_types()
         #service.add_business_locations()
         #service.add_businesses()

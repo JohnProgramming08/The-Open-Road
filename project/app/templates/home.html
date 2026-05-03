@@ -1,0 +1,9 @@
+{% extends "logged_in.html" %}
+
+{% block main%}
+{% for business in unowned_businesses %}
+<a href="/buy_business/{{ id }}/{{ business.business_id }}">{{ business.business_id }}</a>
+<p>{{ business.price }}</p>
+<p>-----------</p>
+{% endfor %}
+{% endblock %}

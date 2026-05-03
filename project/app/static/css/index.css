@@ -1,0 +1,139 @@
+/* Colour Variables */
+:root {
+	--dark-green: #3a7c39;
+	--light-green: #489247;
+}
+
+/* Global Styles */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html,
+body {
+	width: 100%;
+	overflow-x: hidden;
+	height: 100vh;
+	background: linear-gradient(180deg, var(--light-green) 0%, var(--dark-green) 100%);
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/* Text Styles */
+/* Header Styles */
+h1 {
+	color: var(--dark-green);
+	font-size: 3rem;
+	font-weight: 300;
+}
+
+b {
+	font-weight: 550;
+	color: green;
+}
+
+h2 {
+	font-size: 1.1rem;
+}
+
+h3 {
+	color: green;
+	font-size: 1.3rem;
+	padding-top: 0.8rem;
+	font-weight: 300;
+}
+
+/* Standard Text */
+p {
+	padding-top: 0.8rem;
+}
+
+label {
+	color: green;
+	font-weight: 535;
+	padding-right: 2px;
+}
+
+/* Main Styles */
+main {
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 40rem;
+	height: 22rem;
+}
+
+div {
+	display: flex;
+}
+
+#top-line-div, #second-line-div {
+	width: 30rem;
+	justify-content: center;
+	align-items: center;
+}
+
+#second-line-div {
+	width: 30rem;
+	justify-content: right;
+}
+
+img {
+	width: 5rem;
+	height: 5rem;
+}
+
+/* Form Styles */
+#form-div {
+	flex-direction: column;
+	align-items: center;
+	border: 2px solid var(--light-green);
+	width: 30rem;
+	height: 60%;
+}
+
+form {
+	padding-top: 1rem;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+/* Input styles */
+.input-div {
+	width: 60%;
+	justify-content: flex-end;
+	align-items: center;
+	padding-bottom: 0.2rem;
+}
+
+input {
+	background-color: green;
+	color: white;
+	border: none;
+	height: 1.5rem;
+	outline: none;
+	font-size: 1.2rem;
+	padding: 0.25rem;
+}
+
+input[type="submit"] {
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: auto;
+	padding-top: 0.3rem;
+	padding-bottom: 0.3rem;
+	padding-left: 3rem;
+	padding-right: 3rem;
+	margin-left: 1rem;
+	margin-right: 1rem;
+	margin-top: 2rem;
+}

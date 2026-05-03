@@ -1,15 +1,41 @@
 {% extends "base.html" %}
 
+{% block style %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}"/>
+{% endblock %}
+
 {% block body %}
-<h1>Intro page gang</h1>
-<p>{{ error }}</p>
-<form method="post" action ="/">
-	{{ form.hidden_tag() }}
-	{{ form.username.label }}
-	{{ form.username() }}
-	{{ form.password.label }}
-	{{ form.password() }}
-	{{ form.log_in() }}
-	{{ form.sign_up() }}
-</form>
+<main>
+	<!-- Heading -->
+	<div id="top-line-div">
+		<img src="{{ url_for('static', filename='images/TheOpenRoad.png') }}">
+		<h1><b>The</b> Open <b>Road</b></h1>
+	</div>
+	<div id="second-line-div">
+		<h2>Admin Tools</h2>
+	</div>
+
+	<!-- Form -->
+	<div id="form-div">
+		<h3>Welcome!</h3>
+		<p>Please enter your details and click log in / sign up to continue.</p>
+
+		<form method="post" action ="/">
+			{{ form.hidden_tag() }}
+			<div class="input-div">
+				{{ form.username.label }}
+				{{ form.username() }}
+			</div>
+			<div class="input-div">
+				{{ form.password.label }}
+				{{ form.password() }}
+			</div>
+			<div id="submit-div">
+				{{ form.log_in() }}
+				{{ form.sign_up() }}
+			</div>
+		</form>
+	</div>
+	<p>{{ error }}</p>
+</main>
 {% endblock %}
