@@ -137,3 +137,34 @@ input[type="submit"] {
 	margin-right: 1rem;
 	margin-top: 2rem;
 }
+
+/* Mobile Styles */
+@media screen and (max-width: 768px) {
+	/* Main Styles */
+	main, form, #form-div {
+		width: 100%;
+	}
+
+	#top-line-div, #second-line-div {
+		width: 100%;
+	}
+
+	/* Text Styles */
+	p {
+		font-size: 0.8rem;
+	}
+
+	/* Form Styles */
+	#form-div  {
+		border-right: 0;
+		border-left: 0;
+	}
+
+	/* Input Styles */
+	.input-div {
+		width: 80%;
+	}
+	input {
+		width: 70%;
+	}
+}
