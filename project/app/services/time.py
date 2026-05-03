@@ -52,7 +52,7 @@ class TimeService:
 	# Produce a unit of product
 	def make_product(self, business: dict) -> int:
 		business["stock_level"] += 1
-		business["supply_level"] -= business["supply_usage"]
+		business["supplies_level"] -= business["supply_usage"]
 
 		return 67
 	
@@ -79,7 +79,7 @@ class TimeService:
 				self.make_sale(business)
 
 			# Product being made before supplies arrived
-			while time_difference > business["production_time"] and business["supply_level"] > business["supply_usage"] and business["stock_level"] < 100:
+			while time_difference > business["production_time"] and business["supplies_level"] > business["supply_usage"] and business["stock_level"] < 100:
 				change_made = True
 				time_difference -= business["production_time"]
 				self.make_product(business)
@@ -96,7 +96,7 @@ class TimeService:
 				self.setup_business(business)
 
 			# Product being made after supplies arrived
-			while time_difference > business["production_time"] and business["supply_level"] > business["supply_usage"] and business["stock_level"] < 100:
+			while time_difference > business["production_time"] and business["supplies_level"] > business["supply_usage"] and business["stock_level"] < 100:
 				change_made = True
 				time_difference -= business["production_time"]
 				self.make_product(business)

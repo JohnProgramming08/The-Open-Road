@@ -23,5 +23,5 @@ class HomeService:
 			
 			if unowned:
 				result.append(business)
-		
+
 		return result

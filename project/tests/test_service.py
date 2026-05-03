@@ -107,7 +107,7 @@ def test_resupply(one_owned_business_app):
 def test_make_product(one_owned_business_app):
 	data = {
 		"stock_level": 1,
-		"supply_level": 12,
+		"supplies_level": 12,
 		"supply_usage": 4
 	}
 	with one_owned_business_app.app_context():

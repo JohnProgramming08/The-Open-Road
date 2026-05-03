@@ -1,4 +1,5 @@
 from flask import Flask
+from .services import AddBusinessesService
 from .routes import register_blueprints
 from .database import db
 
@@ -19,7 +20,12 @@ def create_app(config_overlay=None):
 
     db.init_app(app)
     with app.app_context():
-        db.create_all()        
+        db.create_all()
+        #print("Got here")
+        service = AddBusinessesService()
+        #service.add_business_types()
+        #service.add_business_locations()
+        #service.add_businesses()
 	
     # Register blueprints/routes
     register_blueprints(app)

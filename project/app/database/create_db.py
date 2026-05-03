@@ -18,6 +18,7 @@ class User(db.Model):
 class BusinessType(db.Model):
 	__tablename__ = "business_types"
 
+	# Descriptions are redundant might delete them
 	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 	type_name = db.Column(db.String(67), unique=True, nullable=False)
 	production_time = db.Column(db.Integer, nullable=False) # Time taken for one stock unit
