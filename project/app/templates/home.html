@@ -1,9 +1,79 @@
 {% extends "logged_in.html" %}
 
+{% block style2 %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}"/>
+{% endblock %}
+
 {% block main%}
-{% for business in unowned_businesses %}
-<a href="/buy_business/{{ id }}/{{ business.business_id }}">{{ business.business_id }}</a>
-<p>{{ business.price }}</p>
-<p>-----------</p>
-{% endfor %}
+<!-- Category List -->
+<div id="category-div">
+	<h2 id="category-heading">Categories</h2>
+	<ul id="category-list">
+		<li class="category selected" id="all">All</li>
+		<li class="category" id="Document Forgery Office">Forgeries</li>
+		<li class="category" id="Weed Farm">Weed</li>
+		<li class="category" id="Counterfeit Cash Factory">Counterfeit Cash</li>
+		<li class="category" id="Methamphetamine Lab">Methamphetamine</li>
+		<li class="category" id="Cocaine Lockup">Cocaine</li>
+	</ul>
+</div>
+
+<!-- Businesses -->
+<div id="business-div">
+	<div id="heading-div">
+		<h2 id="owned-businesses-heading" class="selected-heading">Businesses You Own</h2>
+		<h2 id="unowned-businesses-heading" class="unselected-heading">Buy Business</h2>
+		<h3 id="sort-heading"><p class="orange">Sort: </p> Low to High</h3>
+	</div>
+
+	<!-- Business cards -->
+	<div id="business-grid">
+		<!-- Owned Businesses -->
+		{% for business in owned_businesses %}
+		<a id="{{ business.business_id }}" class="business-card" href="/business_management/{{ id }}/{{ business.business_id }}">
+			<div class="image-div">
+				<!-- Div is placeholder for img of location -->
+				<div class="image-placeholder"></div>
+				<p class="type">{{ business.type }}</p>
+			</div>
+
+			<p class="location-h">LOCATION:</p>
+			<p class="location-p">{{ business.location }}</p>
+			
+			<p class="level-text">STOCK LEVEL:</p>
+			<div class="bar-container stock">
+				<div class="stock-bar"></div>
+			</div>
+
+			<p class="level-text">SUPPLIES LEVEL:</p>
+			<div class="bar-container">
+				<div class="supplies-bar" ></div>
+			</div>
+		</a>
+		{% endfor %}
+
+		<!-- Unowned Businesses -->
+		{% for business in unowned_businesses %}
+		<a id="{{ business.business_id }}" class="business-card unowned" href="/buy_business/{{ id }}/{{ business.business_id }}">
+			<div class="image-div">
+				<!-- Div is placeholder for img of location -->
+				<div class="image-placeholder"></div>
+				<p class="type">{{ business.type }}</p>
+			</div>
+
+			<p class="location-h">LOCATION:</p>
+			<p class="location-p">{{ business.location }}</p>
+			
+			<p class="price">${{ business.price }}</p>
+		</a>
+		{% endfor %}
+	</div>
+</div>
+
+<script>
+	window.ownedBusinesses = {{ owned_businesses | tojson }};
+	window.unownedBusinesses = {{ unowned_businesses | tojson }};
+	window.userID = {{ id }};
+</script>
+<script src="{{ url_for('static', filename='js/home.js') }}"></script>
 {% endblock %}

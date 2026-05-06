@@ -1,0 +1,212 @@
+/* Colour Variables */
+:root {
+	--dark-orange: #ee9400;
+	--light-orange: #fcbc5467;
+	--clear-orange: #ee940067;
+}
+
+/* Global Styles */
+.hidden {
+	display: none;
+}
+
+/* Text Styles */
+/* Headings */
+h2 {
+	color: orange;
+	font-size: 1.2rem;
+	width: 15rem;
+	height: 2rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.orange {
+	color: orange;
+	margin-right: 3px;
+}
+
+.unselected-heading {
+	background-color: white;
+	border: none;
+	color: grey;
+	cursor: pointer;
+}
+
+.selected-heading {
+	background: linear-gradient(to top, #ffffff 0%, #e2e2e7 100%);
+	border: 2px solid grey;
+	border-bottom: none;
+	cursor: pointer;
+}
+
+#category-heading {
+	justify-content: flex-start;
+	margin-bottom: calc(0.5rem + 2px);
+	width: 12rem;
+}
+
+#sort-heading {
+	margin-left: auto;
+	height: 2rem;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	font-size: 1.2rem;
+	cursor: pointer;
+	text-wrap: none;
+	font-weight: normal;
+}
+
+/* Other Text */
+li {
+	color: grey;
+	font-size: 1.2rem; 
+}
+
+.selected {
+	color: orange;
+	background: var(--light-orange);
+}
+
+.location-p, .level-text, .location-h {
+	color: black;
+	width: 100%;
+	padding-left: 0.5rem;
+}
+
+.location-p {
+	padding-bottom: 0.5rem;
+}
+
+.level-text {
+	color: grey;
+}
+
+/* Main Styles */
+main {
+	display: flex;
+	justify-content: space-between;
+	width: 67rem;
+	align-self: center;
+}
+
+/* Category Styles */
+#category-div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 12rem;
+}
+
+ul {
+	width: 100%;
+}
+
+li {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	text-decoration: none;
+	padding: 0.125rem;
+	padding-left: 0.5rem;
+	cursor: pointer;
+	margin-bottom: 0.5rem;
+}
+
+/* Business Div */
+#business-div {
+	width: 50rem;
+}
+
+#heading-div {
+	width: 100%;
+	display: flex;
+	align-items: center;
+}
+
+#business-grid {
+	width: 100%;
+	min-height: 2rem;
+	max-height: 26rem;
+	overflow-y: scroll;
+	border: 2px solid grey;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr); 
+	gap: 0.5rem;
+	padding: 0.5rem;
+}
+
+/* Business Card Styles */
+.business-card {
+	height: 14rem;
+	border: 1px solid grey;
+	cursor: pointer;
+	text-decoration: none;
+	position: relative;
+}
+
+.image-div {
+	height: 6rem;
+	width: 100%;
+	position: relative;
+	margin-bottom: 0.25rem;
+}
+
+.image-placeholder {
+	width: 100%;
+	height: 100%;
+	background-color: grey;
+}
+
+.type {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--clear-orange);
+    color: white;
+    padding: 0.25rem;
+    text-align: left;
+	font-size: 0.9rem;
+}
+
+/* Owned Business Styles */
+.bar-container {
+	margin-left: 0.5rem;
+	width: calc(100% - 1rem);
+	height: 0.875rem;
+	border: 1px solid grey;
+}
+
+.stock {
+	margin-bottom: 0.25rem;
+}
+
+.stock-bar, .supplies-bar {
+	height: 100%;
+	background-color: var(--dark-orange);
+	width: 67%;
+}
+
+/* Unowned Business Styles */
+.price {
+	width: 100%;
+	background: var(--light-orange);
+	color: black;
+	padding-left: 0.5rem;
+	height: 3rem;
+	display: flex;
+	align-items: center;
+	font-size: 1.5rem;
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+.unowned .image-div {
+	height: 7rem;
+}

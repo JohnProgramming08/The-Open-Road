@@ -1,13 +1,19 @@
 {% extends "base.html" %}
 
 {% block style %}
-<p>style stuff</p>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/logged_in.css') }}"/>
 {% block style2 %}{% endblock %}
 {% endblock %}
 
 {% block body %}
 <header>
-	<p>Header stuff</p>
+	<div id="header-div">
+		<div id="logo-div">
+			<img src="{{ url_for('static', filename='images/OrangeRoad.jpg') }}"/>
+			<h1><b>The</b> Open <b>Road</b></h1>
+		</div>
+		<p id="version">VERSION 11.23.001</p>
+	</div>
 </header>
 
 <main>
