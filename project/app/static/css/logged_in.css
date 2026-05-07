@@ -67,3 +67,20 @@ main {
 	margin-top: 2rem;
 	width: 67rem;
 }
+
+/* Mobile Styles */
+@media screen and (max-width: 768px) {
+	/* Header Styles */
+	#header-div {
+		width: 100%;
+	}
+	
+	h1 {
+		font-size: 2rem;
+	}
+
+	/* Main Styles */
+	main {
+		width: 100vw;
+	}
+}

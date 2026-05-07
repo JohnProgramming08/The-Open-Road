@@ -210,3 +210,42 @@ li {
 .unowned .image-div {
 	height: 7rem;
 }
+
+/* Mobile Styles */
+@media screen and (max-width: 768px) {
+	/* Main Styles */
+	main {
+		width: 100vw;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	/* Business Div */
+	#business-div {
+		width: 100%;
+		margin-top: 3rem;
+	}
+
+	#business-grid {
+		grid-template-columns: repeat(2, 1fr);
+		overflow-y: unset;
+		border-right: none;
+		border-left: none;
+		border-bottom: none;		
+	}
+
+	#heading-div h2 {
+		font-size: 1rem;
+		width: auto;
+		padding-right: 10px;
+		padding-left: 10px;
+	}
+
+	#sort-heading {
+		font-size: 0.9rem;
+	}
+
+	.business-card {
+		min-height: fit-content;
+	}
+}
