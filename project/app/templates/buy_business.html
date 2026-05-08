@@ -1,8 +1,74 @@
-{% extends "base.html" %}
+{% extends "logged_in.html" %}
 
-{% block body %}
-<form action="/buy_business/{{ id }}/{{ business_id }}" method="post">
-	{{ form.hidden_tag() }}
-	{{ form.submit() }}
-</form>
+{% block style2 %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/buy_business.css') }}"/>
+{% endblock %}
+
+{% block main %}
+<!-- Business Information -->
+<div id="left-div">
+	<div id="information-div">
+		<div id="image-div">
+			<div id="placeholder"></div>
+			<div id="type">{{ business_data.type }}</div>
+		</div>
+
+		<div id="text-div">
+			<p class="location">LOCATION:</p>
+			<p class="location">{{ business_data.location}}</p>
+			<p id="description">{{ business_data.description }}</p>
+		</div>
+	</div>
+	<a id="back" href="/home/{{ id }}">Back</a>
+</div>
+
+<!-- Buy Business -->
+<div id="right-div">
+	<div id="placeholder-2"></div>
+	<div id="buy-div">
+		<h2>Buy Now:</h2>
+		<h2>${{ business_data.price }}</h2>
+	</div>
+</div>
+{% endblock %}
+
+{% block postmain %}
+<!-- Form -->
+<div class="screen-cover" id="form-cover">
+	<div id="form-div" class="cover-div">
+		<div id="form-logo-div">
+			<img id="logo" src="{{ url_for('static', filename='images/OrangeRoad.jpg') }}"/>
+			<h3><b>The</b> Open <b>Road</b></h3>
+		</div>
+
+		{% if business_data.buyable == True %}
+		<h4>Are you sure you want to buy this business?</h4>
+		<form action="/buy_business/{{ id }}/{{ business_id }}" method="post">
+			{{ form.hidden_tag() }}
+			<div id="cancel">Cancel</div>
+			{{ form.submit() }}
+		</form>
+		{% else %}
+		<h4>You can't afford this business.</h4>
+		<div id="cancel">OK</div>
+		{% endif %}
+	</div>
+</div>
+
+<!-- Successful Purchase -->
+<div class="screen-cover" id="bought-cover">
+	<div id="purchased-div" class="cover-div">
+		<div id="form-logo-div">
+			<img src="{{ url_for('static', filename='images/OrangeRoad.jpg') }}"/>
+			<h3><b>The</b> Open <b>Road</b></h3>
+		</div>
+
+		<h4>Purchase successful!</h4>
+		<a id="ok" href="/business_management/{{ id }}/{{ business_id }}">OK</a>
+	</div>
+</div>
+<script>
+	window.bought = {{ bought | tojson }};
+</script>
+<script src="{{ url_for('static', filename='js/buy_business.js') }}"></script>
 {% endblock %}

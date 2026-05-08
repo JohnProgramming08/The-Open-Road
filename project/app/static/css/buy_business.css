@@ -1,0 +1,188 @@
+/* Colour Variables */
+:root {
+	--dark-orange: #ee9400;
+	--light-orange: #fcbc5467;
+	--clear-orange: #ee940067;
+}
+
+/* Text Styles */
+/* Headings */
+h2 {
+	color: white;
+	font-size: 2.5rem;
+	font-weight: normal;
+}
+
+h3 {
+	color: orange;
+	font-size: 1.8rem;
+	font-weight: 300;
+}
+
+b {
+	font-weight: 550;
+	color: var(--dark-orange);
+}
+
+h4 {
+	color: black;
+}
+
+/* Main styles */
+main {
+	display: flex;
+	flex-direction: row;
+	align-self: center;
+	justify-content: space-between;
+	width: 67;
+}
+
+.screen-cover {
+	position: fixed;
+	inset: 0;
+	width: 100vw;
+	height: 100vh;
+	background: var(--clear-orange);
+	z-index: 67;
+	/* Should be flex */
+	display: none;
+	justify-content: center;
+	align-items: center;
+}
+
+/* Cover Div Styles */
+.cover-div {
+	width: 35rem;
+	height: 20rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	padding: 1.5rem;
+	border: 1px solid grey;
+	background: white;
+}
+
+#form-logo-div {
+	display: flex;
+	align-items: center;
+}
+
+#logo {
+	width: 3rem;
+	height: 3rem;
+}
+
+/* Form Styles */
+form {
+	display: flex;
+	width: 60%;
+	justify-content: space-between;
+	align-items: center;
+}
+
+#ok, #cancel, input {
+	text-decoration: none;
+	color: white;
+	background-color: rgb(189, 128, 49);
+	cursor: pointer;
+	width: 40%;
+	font-size: 1.2rem;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	border: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#ok {
+	width: 5rem;
+}
+
+/* Left Div Styles */
+#left-div {
+	width: 17rem;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+#back {
+	color: orange;
+	font-size: 1.1rem;
+	margin-top: 0.4rem;
+	text-decoration: none;
+}
+
+/* Information Div Styles */
+#information-div {
+	width: 17rem;
+	border: 1px solid grey;
+	height: 25rem;
+}
+
+#image-div {
+	height: 8rem;
+	width: 100%;
+	position: relative;
+	margin-bottom: 0.5rem;
+}
+
+#placeholder {
+	width: 100%;
+	height: 100%;
+	background-color: grey;
+}
+
+#type {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--clear-orange);
+    color: white;
+    padding: 0.25rem;
+    text-align: left;
+	font-size: 0.9rem;
+}
+
+#text-div {
+	display: flex;
+	flex-direction: column;
+	padding: 0.5rem;
+}
+
+.location {
+	margin-bottom: 0.25rem;
+}
+
+#description {
+	color: grey;
+	font-size: 0.9rem;
+}
+
+/* Right Div Styles */
+#right-div {
+	width: 45rem;
+	border: 1px solid grey;
+	height: 25rem;
+}
+
+#placeholder-2 {
+	background-color: grey;
+	width: 100%;
+	height: 20rem;
+}
+
+#buy-div {
+	background: var(--dark-orange);
+	border-top: 1px solid grey;
+	height: 5rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 1rem;
+	cursor: pointer;
+}
+
