@@ -186,3 +186,24 @@ form {
 	cursor: pointer;
 }
 
+/* Mobile Styles */
+@media screen and (max-width: 768px) {
+	/* Main Styles */
+	main {
+		width: 100%;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	#right-div {
+		width: 90%;
+		margin-top: 2rem;
+		margin-bottom: 2rem;
+	}
+
+	.cover-div {
+		width: 100%;
+		border-right: none;
+		border-left: none;
+	}
+}
