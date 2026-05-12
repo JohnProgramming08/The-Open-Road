@@ -18,5 +18,5 @@ def buy_business(user_id: int, business_id: int):
 	# Buy the business using the users money
 	service.buy_business()
 
-	return render_template("buy_business.html", id=user_id, business_data=business_data, bought=True, form=form)
+	return render_template("buy_business.html", id=user_id, business_data=business_data, business_id=business_id, bought=True, form=form)
 

@@ -1,0 +1,430 @@
+/* Colour Variables */
+:root {
+	--dark-green: #3a7c39;
+	--light-green: #489247;
+	--clear-green: #3a7c3967;
+	--clear-grey: rgba(65, 64, 64, 0.523);
+}
+
+/* Global Styles */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html,
+body {
+	width: 100%;
+	overflow-x: hidden;
+	height: 100vh;
+	background: white;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	display: flex;
+	flex-direction: column;
+}
+
+/* Text Styles */
+h1 {
+	color: var(--dark-green);
+	font-size: 3rem;
+	font-weight: 300;
+}
+
+b {
+	font-weight: 550;
+	color: green;
+}
+
+h2 {
+	font-size: 1.75rem;
+	font-weight: normal;
+}
+
+h3 {
+	font-size: 1.25rem;
+	font-weight: normal;
+	width: fit-content;
+}
+
+h4 {
+	font-weight: normal;
+}
+
+#logged-in {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	font-size: 0.8rem;
+}
+
+#username {
+	margin-left: 0.8rem;
+}
+
+#admin {
+	font-weight: 600;
+	font-size: 0.8rem;
+}
+
+.green {
+	color: green;
+}
+
+/* Header Styles */
+header {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 6rem;
+	min-height: 6rem;
+	width: 100%;
+	background: linear-gradient(to bottom, #ffffff 0%, #e2e2e7 100%);
+}
+
+#header-div {
+	height: 100%;
+	width: 67rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+#logo-div {
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+	flex-direction: column;
+}
+
+#top-div {
+	display: flex;
+	align-items: center;
+}
+
+#logo-image {
+	width: 5rem;
+	height: 5rem;
+}
+
+/* Main Styles */
+main {
+	margin-top: 2rem;
+	width: 67rem;
+	align-self: center;
+	display: flex;
+	justify-content: space-between;
+}
+
+/* Left Div Styles */
+#left-div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 15rem;
+}
+
+#image-div {
+	height: 8rem;
+	width: 100%;
+	position: relative;
+	margin-bottom: 0.75rem;
+}
+
+.placeholder {
+	width: 100%;
+	height: 100%;
+	background-color: grey;
+}
+
+#type {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--clear-green);
+    color: white;
+    padding: 0.25rem;
+    text-align: left;
+	font-size: 0.9rem;
+}
+
+.button {
+	width: 100%;
+	padding: 0.5rem;
+	color: white;
+	background-color: green;
+	cursor: pointer;
+}
+
+#left-div h3 {
+	margin-bottom: 0.75rem;
+}
+
+/* Right Div Styles */
+#right-div {
+	width: 45rem;
+	border: 1px solid grey;
+}
+
+.right-container {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	border-top: 1px solid grey;
+	padding-left: 1.5rem;
+}
+
+.gradient-bg {
+	background: linear-gradient(to top, #ffffff 0%, #e2e2e7 100%);
+}
+
+#status-div {
+	height: 3.5rem;
+	padding: 1.5rem;
+	border-top: none;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+#status {
+	margin-right: 1rem;
+}
+
+#bar-container-div {
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-right: 1.5rem;
+}
+
+#stock-div {
+	margin-bottom: 0.75rem;
+}
+
+.bar-div {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.bar-container {
+	border: 1px solid grey;
+	width: 70%;
+	height: 0.75rem;
+}
+
+.bar {
+	height: 100%;
+	width: 67%;
+	background-color: green;
+}
+
+#earnings-sales-div {
+	background: linear-gradient(to bottom, #ffffff 0%, #e2e2e7 100%);
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+#earnings-div, #sales-div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+}
+
+#earnings-div {
+	width: 55%;
+	border-right: 1px solid grey;
+}
+
+#sales-div {
+	width: 45%;
+}
+
+#summary-div {
+	padding-top: 1rem;
+	padding-bottom: 0.5rem;
+	padding-right: 1.5rem;
+}
+
+.summary-row {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 0.5rem;
+}
+
+#upgrades-div {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	align-items: center;
+	padding-left: 0rem;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+}
+
+.upgrade {
+	width: 30%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	height: 17rem;
+	cursor: pointer;
+}
+
+.upgrade-image-div {
+	height: 12rem;
+	width: 100%;
+	position: relative;
+}
+
+.upgrade-placeholder {
+	width: 100%;
+	height: 100%;
+	background-color: grey;
+}
+
+.upgrade-description {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--clear-grey);
+    color: white;
+    padding: 0.25rem;
+    text-align: left;
+	font-size: 0.9rem;
+	height: 100%;
+	width: 100%;
+}
+
+#sell-div {
+	height: 17rem;
+	padding-top: 2rem;
+	padding-left: 3rem;
+	padding-right: 3rem;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.sell-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	margin-bottom: 2rem;
+}
+
+.company-column {
+	display: flex;
+	flex-direction: column;
+}
+
+.location {
+	padding-bottom: 0.5rem;
+}
+
+.sale-button {
+	width: 15rem;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	text-align: center;
+}
+
+#sell-button {
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+}
+
+#upgrades-div, #sell-div {
+	display: none;
+}
+
+/* Screen Cover Styles */
+#screen-cover {
+	position: fixed;
+	inset: 0;
+	width: 100vw;
+	height: 100vh;
+	background: var(--clear-green);
+	z-index: 67;
+	/* Should be flex */
+	display: none;
+	justify-content: center;
+	align-items: center;
+}
+
+/* Cover Div Styles */
+#cover-div {
+	width: 35rem;
+	height: 20rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	padding: 1.5rem;
+	border: 1px solid grey;
+	background: white;
+}
+
+#form-logo-div {
+	display: flex;
+	align-items: center;
+}
+
+#logo-img {
+	width: 3rem;
+	height: 3rem;
+}
+
+#name {
+	color: var(--light-green);
+}
+
+#cover-text {
+	font-weight: bold;
+	color: black;
+	font-size: 1.1rem;
+}
+
+/* Form Styles */
+form {
+	display: flex;
+	width: 60%;
+	justify-content: space-between;
+	align-items: center;
+}
+
+#ok, #cancel, input {
+	text-decoration: none;
+	color: white;
+	cursor: pointer;
+	width: 40%;
+	font-size: 1.2rem;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	border: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: green;
+}
+
+#ok {
+	width: 5rem;
+	display: none;
+}
+
+.hidden {
+	display: none;
+}

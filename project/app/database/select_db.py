@@ -1,4 +1,5 @@
 from .create_db import db, User, OwnedBusiness, Business, BusinessType, BusinessLocation
+from datetime import datetime
 
 class Select:
 	# Get the id of the user with the given username and password hash
@@ -149,6 +150,10 @@ class Select:
 		else:
 			sell_success_rate_blaine_county = 0
 
+		sale_value = business.stock_level * business.business.businesstype.stock_value
+
+		setup_finished = business.setup_finish_time < datetime.now().timestamp()
+
 		res = {
 			"location": business.business.businesslocation.location_name,
 			"type": business.business.businesstype.type_name,
@@ -162,7 +167,12 @@ class Select:
 			"sell_success_rate_blaine_county": sell_success_rate_blaine_county,
 			"production_ceased_supplies": business.production_ceased_supplies,
 			"production_ceased_raided": business.production_ceased_raided,
-			"production_ceased_capacity": business.production_ceased_capacity
+			"production_ceased_capacity": business.production_ceased_capacity,
+			"sale_value": sale_value,
+			"setup_started": business.setup_started,
+			"setup_finished": setup_finished,
+			"sale_started": business.sale_started,
+			"supplies_bought": business.supplies_bought
 		}
 
 		return res

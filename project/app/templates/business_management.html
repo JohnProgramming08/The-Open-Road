@@ -1,0 +1,195 @@
+{% extends "base.html" %}
+
+{% block style %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/business_management.css') }}"/>
+{% endblock %}
+
+{% block body %}
+<!-- Header -->
+<header>
+	<div id="header-div">
+		<div id="logo-div">
+			<div id="top-div">
+				<img id="logo-image" src="{{ url_for('static', filename='images/TheOpenRoad.png') }}"/>
+				<h1><b>The</b> Open <b>Road</b></h1>
+			</div>
+			<p id="admin">Admin Tools</p>
+		</div>
+
+		<div id="logged-in">
+			<p class="green">Logged in as:</p> <p id="username">USERNAME</p>
+		</div>
+	</div>
+</header>
+
+<!-- Main -->
+<main>
+	<!-- Left Div -->
+	<div id="left-div">
+		<div id="image-div">
+			<div class="placeholder"></div>
+			<p id="type">{{ summary_data.type }}</p>
+		</div>
+		<h3 id="set-up" class="button">Set Up</h3>
+		<h3 id="buy-upgrades" class="button">Buy Upgrades</h3>
+	</div>
+
+	<!-- Right Div -->
+	<div id="right-div">
+		<div class="gradient-bg right-container" id="status-div">
+			<h3 class="green" id="status">STATUS:</h3>
+			<h3>{{ summary_data.status }}</h3>
+		</div>
+
+		<div class="right-container" id="bar-container-div">
+			<div class="bar-div" id="stock-div">
+				<h4>Stock Level</h4>
+				<div class="bar-container">
+					<div class="bar" id="stock"></div>
+				</div>
+			</div>
+			<div class="bar-div">
+				<h4>Supplies Level</h4>
+				<div class="bar-container">
+					<div class="bar" id="supplies"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="earnings-sales-div" class="gradient-bg right-container">
+			<div id="earnings-div">
+				<h2 class="green">Total Earnings</h2>
+				<h2>${{ summary_data.total_earnings }}</h2>
+			</div>
+
+			<div id="sales-div">
+				<h2 class="green">Total Sales</h2>
+				<h2>{{ summary_data.total_sales }}</h2>
+			</div>
+		</div>
+
+		<div id="summary-div" class="right-container">
+			<div class="summary-row">
+				<h4>Resupply Success Rate</h4>
+				<h4>{{ summary_data.resupply_success_rate }}%</h4>
+			</div>
+
+			<div class="summary-row">
+				<h4>Sell Success Rate Los Santos</h4>
+				<h4>{{ summary_data.sell_success_rate_los_santos }}%</h4>
+			</div>
+
+			<div class="summary-row">
+				<h4>Sell Success Rate Blaine County</h4>
+				<h4>{{ summary_data.sell_success_rate_blaine_county }}%</h4>
+			</div>
+
+			<div class="summary-row">
+				<h4>Production Ceased (Supplies)</h4>
+				<h4>{{ summary_data.production_ceased_supplies }}</h4>
+			</div>
+
+			<div class="summary-row">
+				<h4>Production Ceased (Raided)</h4>
+				<h4>{{ summary_data.production_ceased_raided }}</h4>
+			</div>
+
+			<div class="summary-row">
+				<h4>Production Ceased (Capacity)</h4>
+				<h4>{{ summary_data.production_ceased_capacity }}</h4>
+			</div>
+		</div>
+
+		<div id="upgrades-div" class="right-container">
+			<div class="upgrade" id="equipment">
+				<div class="upgrade-image-div">
+					<div class="upgrade-placeholder"></div>
+					<p class="upgrade-description">{{ upgrades_data.equipment_description }}</p>
+				</div>
+
+				<h3 class="upgrade-button button">
+					<p>Equipment Upgrade</p>
+					<p>${{ upgrades_data.equipment_price }}</p>
+				</h3>
+			</div>
+
+			<div class="upgrade" id="staff">
+				<div class="upgrade-image-div">
+					<div class="upgrade-placeholder"></div>
+					<p class="upgrade-description">{{ upgrades_data.staff_description }}</p>
+				</div>
+
+				<h3 class="upgrade-button button">
+					<p>Staff Upgrade</p>
+					<p>${{ upgrades_data.staff_price }}</p>
+				</h3>
+			</div>
+
+			<div class="upgrade" id="security">
+				<div class="upgrade-image-div">
+					<div class="upgrade-placeholder"></div>
+					<p class="upgrade-description">{{ upgrades_data.security_description }}</p>
+				</div>
+
+				<h3 class="upgrade-button button">
+					<p>Security Upgrade</p>
+					<p>${{ upgrades_data.security_price }}</p>
+				</h3>
+			</div>
+		</div>
+
+		<div class="right-container" id="sell-div">
+			<div class="sell-row">
+				<div class="company-column">
+					<h4 id="close-location" class="location green">Location: Placeholder</h4>
+					<h4 id="close-company" class="company">Parrs Wood Sixth Form</h4>
+				</div>
+
+				<h2 class="button sale-button" id="close-sell">
+					${{ summary_data.sale_value }}
+				</h2>
+			</div>
+
+			<div class="sell-row">
+				<div class="company-column">
+					<h4 id="far-location" class="location green">Location: Placeholder</h4>
+					<h4 id="far-company" class="company">The Esports Room</h4>
+				</div>
+
+				<h2 class="button sale-button" id="far-sell">
+					${{ (summary_data.sale_value * 1.5) | round(0) | int }}
+				</h2>
+			</div>
+		</div>
+		<h2 class="button" id="sell-button">Sell Stock</h2>
+	</div>
+</main>
+
+<!-- Screen Covers -->
+<div id="screen-cover">
+	<div id="cover-div">
+		<div id="form-logo-div">
+			<img id="logo-img" src="{{ url_for('static', filename='images/TheOpenRoad.png') }}"/>
+			<h2 id="name"><b>The</b> Open <b>Road</b></h2>
+		</div>
+
+		<h3 id="cover-text">Placeholder</h3>
+
+		<form action="/buy_business/{{ id }}/{{ business_id }}" method="post" id="form">
+			{{ form.hidden_tag() }}
+			{{ form.button_clicked() }}
+			{{ form.location() }}
+			{{ form.distance() }}
+			<h3 id="cancel" class="button">Cancel</h3>
+			{{ form.submit () }}
+		</form>
+		<h3 id="ok" class="button">OK</h3>
+	</div>
+</div>
+
+<script>
+	window.summaryData = {{ summary_data | tojson }};
+	window.upgradesData = {{ upgrades_data | tojson }};
+</script>
+<script src="{{ url_for('static', filename='js/business_management.js') }}"></script>
+{% endblock %}

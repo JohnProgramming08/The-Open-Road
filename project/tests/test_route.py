@@ -23,7 +23,7 @@ def test_index_post_valid(one_hashed_user_client, username, password, log_in, si
 		data["sign_up"] = True
 
 	response = one_hashed_user_client.post("/", data=data, follow_redirects=False)
-	assert response.status_code == 200
+	assert response.status_code == 302
 	assert "/home/" in response.headers["Location"]
 
 @pytest.mark.parametrize("username, password, log_in, sign_up, error", [

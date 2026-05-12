@@ -133,7 +133,7 @@ def test_update_owned_business_data(one_owned_business_app):
 def test_get_summary_data(one_owned_business_app):
 	with one_owned_business_app.app_context():
 		service = BusinessManagementService(1)
-		assert len(service.get_summary_data()) == 13
+		assert len(service.get_summary_data()) == 18
 
 @pytest.mark.parametrize("location, distance", [
 	("Los Santos", "far"),
