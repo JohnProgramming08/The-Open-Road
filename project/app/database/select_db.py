@@ -29,7 +29,7 @@ class Select:
 			business_type = owned_business.business.businesstype.type_name
 			business_location = owned_business.business.businesslocation.location_name
 			business_price = owned_business.business.price
-			business_id = owned_business.business.id
+			business_id = owned_business.id
 			stock_level = owned_business.stock_level
 			supplies_level = owned_business.supplies_level
 
@@ -209,3 +209,9 @@ class Select:
 	def select_business_type_id(type_name: str) -> int:
 		type = BusinessType.query.filter(type_name == BusinessType.type_name).first()
 		return type.id
+	
+	# Still needs testing
+	# Get the id of an owned business
+	def select_owned_business_id(user_id: int, business_id: int) -> int:
+		business = OwnedBusiness.query.filter(OwnedBusiness.user_id == user_id, OwnedBusiness.business_id == business_id).first()
+		return business.id

@@ -7,6 +7,7 @@ business_management_bp = Blueprint("business_management", __name__)
 
 @business_management_bp.route("/business_management/<int:user_id>/<int:owned_business_id>", methods=["GET", "POST"])
 def business_management(user_id: int, owned_business_id: int):
+	print(owned_business_id)
 	form = BusinessManagementForm()
 	
 	# Get all of the data for the business
@@ -41,4 +42,4 @@ def business_management(user_id: int, owned_business_id: int):
 		case "equipment":
 			service.buy_upgrade("equipment")
 
-	return render_template("business_management.html", form=form, id=user_id, summary_data=summary_data, upgrades_data=upgrades_data, button_clicked=form.button_clicked, business_id=owned_business_id)
+	return render_template("business_management.html", form=form, id=user_id, summary_data=summary_data, upgrades_data=upgrades_data, button_clicked=form.button_clicked.data, business_id=owned_business_id)

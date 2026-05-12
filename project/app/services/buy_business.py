@@ -31,6 +31,11 @@ class BuyBusinessService:
 			Insert.insert_owned_business(self.business_id, self.user_id)
 		
 		return "success"
+	
+	# Still needs testing 
+	# Get the id of the owned business
+	def get_owned_business_id(self) -> int:
+		return Select.select_owned_business_id(self.user_id, self.business_id)
 
 	
 	

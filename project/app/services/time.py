@@ -60,7 +60,7 @@ class TimeService:
 	def setup_business(self, business: dict) -> bool:
 		business["status"] = "ACTIVE"
 		business["supplies_level"] = 100
-		business["setup_started"] = False
+		business["setup_started"] = True
 
 		return 67
 
