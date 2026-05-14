@@ -71,6 +71,12 @@ h4 {
 	color: green;
 }
 
+#back-h4 {
+	display: flex;
+	text-align: left;
+	width: 100%;
+}
+
 /* Header Styles */
 header {
 	display: flex;
@@ -427,4 +433,25 @@ form {
 
 .hidden {
 	display: none;
+}
+
+/* Money Styles */
+@font-face {
+    font-family: 'Pricedown';
+    src: url('pricedown bl.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#money {
+	position: fixed;
+	right: 1rem;
+	top: 1rem;
+	z-index: 99999;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.5rem;
+	color: rgb(154, 190, 154);
+	font-family: 'Pricedown', sans-serif;
 }

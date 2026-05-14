@@ -81,7 +81,7 @@ def test_make_sale(one_owned_business_app):
 		"sale_distance": "far",
 		"total_earnings": 670,
 		"total_sales": 2,
-		"sale_destination": "Los Santos",
+		"sale_location": "Los Santos",
 		"total_los_santos_sales": 2,
 		"successful_los_santos_sales": 2,
 		"total_blaine_county_sales": 0,
@@ -132,7 +132,7 @@ def test_update_owned_business_data(one_owned_business_app):
 # Business management service
 def test_get_summary_data(one_owned_business_app):
 	with one_owned_business_app.app_context():
-		service = BusinessManagementService(1)
+		service = BusinessManagementService(1, 1)
 		assert len(service.get_summary_data()) == 18
 
 @pytest.mark.parametrize("location, distance", [
@@ -143,18 +143,18 @@ def test_get_summary_data(one_owned_business_app):
 ])
 def test_start_sale(one_owned_business_app, location, distance):
 	with one_owned_business_app.app_context():
-		service = BusinessManagementService(1)
+		service = BusinessManagementService(1, 1)
 		sale_made = service.start_sale(location, distance)
 		assert sale_made == 67
 
 def test_start_resupply(one_owned_business_app):
 	with one_owned_business_app.app_context():
-		service = BusinessManagementService(1)
+		service = BusinessManagementService(1, 1)
 		assert service.start_resupply() == 67
 
 def test_start_setup(one_owned_business_app):
 	with one_owned_business_app.app_context():
-		service = BusinessManagementService(1)
+		service = BusinessManagementService(1, 1)
 		assert service.start_setup() == 67
 
 @pytest.mark.parametrize("upgrade", [
@@ -166,7 +166,7 @@ def test_start_setup(one_owned_business_app):
 ])
 def test_buy_upgrade(one_owned_business_app, upgrade):
 	with one_owned_business_app.app_context():
-		service = BusinessManagementService(1)
+		service = BusinessManagementService(1, 1)
 		assert service.buy_upgrade(upgrade) == 67
 
 # Add businesses service

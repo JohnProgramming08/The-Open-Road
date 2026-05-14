@@ -1,8 +1,9 @@
 from app.database import Update, Select
 
 class BusinessManagementService:
-	def __init__(self, business_id: int):
+	def __init__(self, business_id: int, user_id: int):
 		self.business_id = business_id
+		self.user_id = user_id
 
 	# Fetch all of the summary data for the owned business
 	def get_summary_data(self) -> dict:
@@ -28,10 +29,26 @@ class BusinessManagementService:
 	
 	# Fetch all of the upgrades data for the given business
 	def get_upgrades_data(self) -> dict:
-		return Select.select_upgrades_data(self.business_id)
+		self.upgrades_data = Select.select_upgrades_data(self.business_id)
+		return self.upgrades_data
 	
 	# Buy an upgrade for the given business
 	def buy_upgrade(self, upgrade: str) -> int:
+		if upgrade not in ["staff", "equipment", "security"]:
+			return 67
+		
 		Update.update_upgrade_bought(self.business_id, upgrade)
+		try:
+			price = self.upgrades_data[f"{upgrade}_price"]
+		except:
+			price = self.get_upgrades_data()[f"{upgrade}_price"]
+			
+		new_money = self.get_money_amount() - price
+		Update.update_money(self.user_id, new_money)
 
 		return 67
+	
+	# Fetch the users amount of money
+	# Still needs testing
+	def get_money_amount(self) -> int:
+		return Select.select_user_money(self.user_id)

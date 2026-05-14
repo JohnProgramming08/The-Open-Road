@@ -31,7 +31,7 @@ class TimeService:
 		business["sale_started"] = False
 		business["total_earnings"] += money_made
 		business["total_sales"] += 1
-		if business["sale_destination"] == "Los Santos":
+		if business["sale_location"] == "Los Santos":
 			business["total_los_santos_sales"] += 1
 			business["successful_los_santos_sales"] += 1
 		else:
@@ -90,7 +90,7 @@ class TimeService:
 				self.resupply(business)
 
 			# Business has been setup
-			if current_time > business["setup_finish_time"] and business["setup_started"]:
+			if current_time > business["setup_finish_time"] and business["setup_started"] and business["status"] == "INACTIVE - PENDING SET UP":
 				change_made = True
 				time_difference -= 600
 				self.setup_business(business)

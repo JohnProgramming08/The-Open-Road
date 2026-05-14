@@ -193,7 +193,7 @@ class Select:
 			"staff_bought": business.staff_upgrade_bought,
 			"security_description": security_description,
 			"security_price": security_price,
-			"security-bought": business.security_upgrade_bought,
+			"security_bought": business.security_upgrade_bought,
 			"equipment_description": equipment_description,
 			"equipment_price": equipment_price,
 			"equipment_bought": business.equipment_upgrade_bought

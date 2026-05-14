@@ -169,3 +169,7 @@ input[type="submit"] {
 		width: 70%;
 	}
 }
+
+#money {
+	display: none;
+}

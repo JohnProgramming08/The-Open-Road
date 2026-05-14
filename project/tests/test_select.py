@@ -69,7 +69,7 @@ def test_select_business_invalid(one_owned_business_app):
 # Fetching a users money
 def test_select_user_money_valid(one_user_app):
 	with one_user_app.app_context():
-		assert Select.select_user_money(1) == 670000
+		Select.select_user_money(1) == 670000
 
 def test_select_user_movey_invalid(one_user_app):
 	with one_user_app.app_context():

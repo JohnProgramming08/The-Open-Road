@@ -1,4 +1,4 @@
-
+import time
 from flask import render_template, Blueprint, redirect, url_for
 from app.services import BusinessManagementService
 from app.forms import BusinessManagementForm
@@ -7,17 +7,17 @@ business_management_bp = Blueprint("business_management", __name__)
 
 @business_management_bp.route("/business_management/<int:user_id>/<int:owned_business_id>", methods=["GET", "POST"])
 def business_management(user_id: int, owned_business_id: int):
-	print(owned_business_id)
 	form = BusinessManagementForm()
 	
 	# Get all of the data for the business
-	service = BusinessManagementService(owned_business_id)
+	service = BusinessManagementService(owned_business_id, user_id)
 	summary_data = service.get_summary_data()
 	upgrades_data = service.get_upgrades_data()
-	
+	money = service.get_money_amount()
+
 	# User has not submitted a form
 	if not form.validate_on_submit():
-		return render_template("business_management.html", form=form, id=user_id, summary_data=summary_data, upgrades_data=upgrades_data, button_clicked="", business_id=owned_business_id)
+		return render_template("business_management.html", form=form, id=user_id, summary_data=summary_data, upgrades_data=upgrades_data, button_clicked="", business_id=owned_business_id, money=money)
 	
 	# User has submitted a form
 	match form.button_clicked.data:
@@ -42,4 +42,7 @@ def business_management(user_id: int, owned_business_id: int):
 		case "equipment":
 			service.buy_upgrade("equipment")
 
-	return render_template("business_management.html", form=form, id=user_id, summary_data=summary_data, upgrades_data=upgrades_data, button_clicked=form.button_clicked.data, business_id=owned_business_id)
+	summary_data = service.get_summary_data()
+	upgrades_data = service.get_upgrades_data()
+
+	return render_template("business_management.html", form=form, id=user_id, summary_data=summary_data, upgrades_data=upgrades_data, button_clicked=form.button_clicked.data, business_id=owned_business_id, money=money)

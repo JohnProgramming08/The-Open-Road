@@ -1,5 +1,5 @@
 from flask import render_template, Blueprint, redirect, url_for
-from app.services import BuyBusinessService
+from app.services import BuyBusinessService, MoneyService
 from app.forms import BuyBusinessForm
 
 buy_business_bp = Blueprint("buy_business", __name__)
@@ -9,14 +9,15 @@ def buy_business(user_id: int, business_id: int):
 	form = BuyBusinessForm()
 	service = BuyBusinessService(business_id, user_id)
 	business_data = service.get_business_data()
+	money = MoneyService.get_user_money(user_id)
 
 	# Get request
 	if not form.validate_on_submit():
-		return render_template("buy_business.html", id=user_id, business_id=business_id, business_data=business_data, bought=False, form=form)
+		return render_template("buy_business.html", id=user_id, business_id=business_id, business_data=business_data, bought=False, form=form, money=money)
 	
 	# Post request
 	# Buy the business using the users money
 	service.buy_business()
 	owned_business_id = service.get_owned_business_id()
-	return render_template("buy_business.html", id=user_id, business_data=business_data, business_id=owned_business_id, bought=True, form=form)
+	return render_template("buy_business.html", id=user_id, business_data=business_data, business_id=owned_business_id, bought=True, form=form, money=money)
 

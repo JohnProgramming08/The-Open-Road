@@ -30,8 +30,10 @@
 			<div class="placeholder"></div>
 			<p id="type">{{ summary_data.type }}</p>
 		</div>
+		<h3 id="resupply" class="button">Resupply</h3>
 		<h3 id="set-up" class="button">Set Up</h3>
 		<h3 id="buy-upgrades" class="button">Buy Upgrades</h3>
+		<h4 class="green" id="back-h4"><a href="/home/{{ id }}" class="green" id="back">Back</a></h4>
 	</div>
 
 	<!-- Right Div -->
@@ -107,7 +109,7 @@
 					<p class="upgrade-description">{{ upgrades_data.equipment_description }}</p>
 				</div>
 
-				<h3 class="upgrade-button button">
+				<h3 class="upgrade-button button" id="equipment-upgrade">
 					<p>Equipment Upgrade</p>
 					<p>${{ upgrades_data.equipment_price }}</p>
 				</h3>
@@ -119,7 +121,7 @@
 					<p class="upgrade-description">{{ upgrades_data.staff_description }}</p>
 				</div>
 
-				<h3 class="upgrade-button button">
+				<h3 class="upgrade-button button" id="staff-upgrade">
 					<p>Staff Upgrade</p>
 					<p>${{ upgrades_data.staff_price }}</p>
 				</h3>
@@ -131,7 +133,7 @@
 					<p class="upgrade-description">{{ upgrades_data.security_description }}</p>
 				</div>
 
-				<h3 class="upgrade-button button">
+				<h3 class="upgrade-button button" id="security-upgrade">
 					<p>Security Upgrade</p>
 					<p>${{ upgrades_data.security_price }}</p>
 				</h3>
@@ -175,7 +177,7 @@
 
 		<h3 id="cover-text">Placeholder</h3>
 
-		<form action="/buy_business/{{ id }}/{{ business_id }}" method="post" id="form">
+		<form action="/business_management/{{ id }}/{{ business_id }}" method="post" id="form">
 			{{ form.hidden_tag() }}
 			{{ form.button_clicked() }}
 			{{ form.location() }}
@@ -190,6 +192,8 @@
 <script>
 	window.summaryData = {{ summary_data | tojson }};
 	window.upgradesData = {{ upgrades_data | tojson }};
+	window.buttonClicked = "{{ button_clicked }}";
+	window.money = {{ money }};
 </script>
 <script src="{{ url_for('static', filename='js/business_management.js') }}"></script>
 {% endblock %}
