@@ -455,3 +455,66 @@ form {
 	color: rgb(154, 190, 154);
 	font-family: 'Pricedown', sans-serif;
 }
+
+/* Mobile Styles */
+@media screen and (max-width: 768px) {
+	/* Header Styles */
+	#header-div {
+		width: 100%;
+	}
+	
+	h1 {
+		font-size: 2rem;
+	}
+
+	#logged-in {
+		display: none;
+	}
+
+	#money {
+		top: 6rem;
+	}
+
+	/* Main Styles */
+	main {
+		width: 100vw;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	#right-div {
+		margin-top: 2rem;
+		width: 100%;
+	}
+
+	#earnings-sales-div {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding-left: 0px;
+		padding-right: 0px;
+	}
+
+	#sales-div, #earnings-div {
+		border-left: none;
+		border-right: none;
+		width: 100vw;
+		display: flex;
+		align-items: center;
+	}
+
+	#sales-div {
+		border-top: solid grey 1px;
+	}
+
+	#upgrades-div {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.upgrade {
+		width: 90%;
+		margin-bottom: 1rem;
+		justify-content: flex-start;
+	}
+}
