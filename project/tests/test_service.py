@@ -1,4 +1,4 @@
-from app.services import AddBusinessesService, BusinessManagementService, IntroService, HomeService, BuyBusinessService, TimeService
+from app.services import MoneyService, AddBusinessesService, BusinessManagementService, IntroService, HomeService, BuyBusinessService, TimeService
 import pytest
 
 # Intro service
@@ -68,6 +68,11 @@ def test_buy_business(one_business_user_app):
 	with one_business_user_app.app_context():
 		service = BuyBusinessService(1, 1)
 		assert service.buy_business() == "success"
+
+def test_get_owned_business_id(one_owned_business_app):
+	with one_owned_business_app.app_context():
+		service = BuyBusinessService(1, 1)
+		assert service.get_owned_business_id() == 1
 
 # Time service
 def test_get_owned_business_data(one_owned_business_app):
@@ -169,6 +174,11 @@ def test_buy_upgrade(one_owned_business_app, upgrade):
 		service = BusinessManagementService(1, 1)
 		assert service.buy_upgrade(upgrade) == 67
 
+def test_get_money_amount(one_owned_business_app):
+	with one_owned_business_app.app_context():
+		service = BusinessManagementService(1, 1)
+		assert service.get_money_amount() == 670000
+
 # Add businesses service
 def test_add_business_types(app):
 	service = AddBusinessesService()
@@ -186,3 +196,8 @@ def test_add_businesses(app):
 		assert service.add_business_locations() == 67
 		assert service.add_business_types() == 67
 		assert service.add_businesses() == 67
+
+# Money service
+def test_get_user_money(one_user_app):
+	with one_user_app.app_context():
+		assert MoneyService.get_user_money(1) == 670000

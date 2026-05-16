@@ -79,7 +79,7 @@ def test_select_user_movey_invalid(one_user_app):
 def test_get_owned_business_time_data_valid(one_owned_business_app):
 	with one_owned_business_app.app_context():
 		data = Select.select_owned_business_time_data(1)
-		assert len(data) == 23
+		assert len(data) == 26
 		assert data["setup_started"] == False
 
 def test_get_owned_business_time_data_invalid(one_owned_business_app):
@@ -112,3 +112,8 @@ def test_select_business_location_id(one_business_user_app):
 def test_select_business_type_id(one_business_user_app):
 	with one_business_user_app.app_context():
 		assert Select.select_business_type_id("Weed") == 1
+
+# Fetching an owned business id
+def test_select_owned_business_id(one_owned_business_app):
+	with one_owned_business_app.app_context():
+		assert Select.select_owned_business_id(1, 1) == 1

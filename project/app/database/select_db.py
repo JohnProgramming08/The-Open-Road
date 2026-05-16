@@ -122,6 +122,10 @@ class Select:
 		res["supply_usage"] = owned_business.business.businesstype.supply_usage
 		res["status"] = owned_business.status
 
+		res["staff_upgrade_bought"] = owned_business.staff_upgrade_bought
+		res["security_upgrade_bought"] = owned_business.security_upgrade_bought
+		res["equipment_upgrade_bought"] = owned_business.equipment_upgrade_bought
+
 		return res 
 	
 	# Get the last time the user logged in
@@ -151,6 +155,10 @@ class Select:
 			sell_success_rate_blaine_county = 0
 
 		sale_value = business.stock_level * business.business.businesstype.stock_value
+		if business.staff_upgrade_bought:
+			sale_value *= 1.5
+		if business.equipment_upgrade_bought:
+			sale_value *= 2
 
 		setup_finished = business.setup_finish_time < datetime.now().timestamp()
 
@@ -199,7 +207,6 @@ class Select:
 			"equipment_bought": business.equipment_upgrade_bought
 		}
 	
-	# Both still need testing
 	# Get the id of a given business location
 	def select_business_location_id(location_name: str) -> int:
 		location = BusinessLocation.query.filter(location_name == BusinessLocation.location_name).first()
@@ -210,7 +217,6 @@ class Select:
 		type = BusinessType.query.filter(type_name == BusinessType.type_name).first()
 		return type.id
 	
-	# Still needs testing
 	# Get the id of an owned business
 	def select_owned_business_id(user_id: int, business_id: int) -> int:
 		business = OwnedBusiness.query.filter(OwnedBusiness.user_id == user_id, OwnedBusiness.business_id == business_id).first()

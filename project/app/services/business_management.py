@@ -49,6 +49,5 @@ class BusinessManagementService:
 		return 67
 	
 	# Fetch the users amount of money
-	# Still needs testing
 	def get_money_amount(self) -> int:
 		return Select.select_user_money(self.user_id)

@@ -73,6 +73,18 @@ class TimeService:
 		time_difference = current_time - last_login_time
 
 		for business in self.business_data:
+			business_time_difference = time_difference
+
+			# Check for upgrades
+			if business["staff_upgrade_bought"]:
+				business_time_difference *= 1.25
+				business["stock_value"] *= 1.5
+			if business["equipment_upgrade_bought"]:
+				business_time_difference *= 1.5
+				business["stock_value"] *= 2
+				business["supply_usage"] = round(0.75 * business["supply_usage"])
+			# No security upgrade change yet as raids cant fail etc
+
 			# Sale made
 			if current_time > business["sale_finish_time"] and business["sale_started"]:
 				change_made = True
