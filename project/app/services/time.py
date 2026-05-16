@@ -106,6 +106,6 @@ class TimeService:
 				Update.update_last_login_time(self.user_id, current_time)
 				Update.update_business_time_data(business["id"], business)
 
-			return change_made
+		return change_made
 				
 

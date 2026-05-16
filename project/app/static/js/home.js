@@ -73,19 +73,16 @@ class BusinessDisplay {
 	// Filter displayed businesses by category
 	filterByCategory(category) {
 		let businesses = [];
-		let owned;
 		if (this.displayed == "owned") {
 			businesses = this.ownedBusinessData;
-			owned = true;
 		} else {
 			businesses = this.unownedBusinessData;
-			owned = false;
 		}
 
 		// Display all businesses
 		if (category == "all") {
 			for (const business of businesses) {
-				if (owned) {
+				if (this.displayed == "owned") {
 					const businessHTML = document.getElementById(String(business.owned_business_id));
 					businessHTML.style.display = "inline";
 				} else {
@@ -104,9 +101,10 @@ class BusinessDisplay {
 			return 67;
 		}
 
+		// Filter through businesses
 		for (const business of businesses) {
 			let businessHTML;
-			if (owned) {
+			if (this.displayed == "owned") {
 				businessHTML = document.getElementById(String(business.owned_business_id));
 			} else {
 				businessHTML = document.getElementById(String(business.business_id));
