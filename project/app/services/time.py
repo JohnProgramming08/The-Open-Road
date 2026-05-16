@@ -13,7 +13,7 @@ class TimeService:
 		businesses = Select.select_owned_businesses(self.user_id)
 		res = []
 		for business in businesses:
-			res.append(Select.select_owned_business_time_data(business["business_id"]))
+			res.append(Select.select_owned_business_time_data(business["owned_business_id"]))
 
 		return res	
 	

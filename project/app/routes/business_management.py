@@ -17,7 +17,7 @@ def business_management(user_id: int, owned_business_id: int):
 
 	# User has not submitted a form
 	if not form.validate_on_submit():
-		return render_template("business_management.html", form=form, id=user_id, summary_data=summary_data, upgrades_data=upgrades_data, button_clicked="", business_id=owned_business_id, money=money)
+		return render_template("business_management.html", form=form, id=user_id, summary_data=summary_data, upgrades_data=upgrades_data, button_clicked="", owned_business_id=owned_business_id, money=money)
 	
 	# User has submitted a form
 	match form.button_clicked.data:
@@ -45,4 +45,4 @@ def business_management(user_id: int, owned_business_id: int):
 	summary_data = service.get_summary_data()
 	upgrades_data = service.get_upgrades_data()
 
-	return render_template("business_management.html", form=form, id=user_id, summary_data=summary_data, upgrades_data=upgrades_data, button_clicked=form.button_clicked.data, business_id=owned_business_id, money=money)
+	return render_template("business_management.html", form=form, id=user_id, summary_data=summary_data, upgrades_data=upgrades_data, button_clicked=form.button_clicked.data, owned_business_id=owned_business_id, money=money)

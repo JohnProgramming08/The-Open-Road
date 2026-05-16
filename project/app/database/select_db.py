@@ -29,12 +29,12 @@ class Select:
 			business_type = owned_business.business.businesstype.type_name
 			business_location = owned_business.business.businesslocation.location_name
 			business_price = owned_business.business.price
-			business_id = owned_business.id
+			owned_business_id = owned_business.id
 			stock_level = owned_business.stock_level
 			supplies_level = owned_business.supplies_level
 
 			res.append({
-				"business_id": business_id,
+				"owned_business_id": owned_business_id,
 				"type": business_type,
 				"location": business_location,
 				"price": business_price,

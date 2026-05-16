@@ -23,7 +23,7 @@ class BusinessDisplay {
 	// Change the bar widths for all owned businesses
 	changeBarWidths() {
 		for (const business of this.ownedBusinessData) {
-			const businessHTML = document.getElementById(String(business.business_id));
+			const businessHTML = document.getElementById(String(business.owned_business_id));
 			const suppliesBar = Array.from(businessHTML.getElementsByClassName("supplies-bar"))[0];
 			const stockBar = Array.from(businessHTML.getElementsByClassName("stock-bar"))[0];
 
@@ -73,18 +73,27 @@ class BusinessDisplay {
 	// Filter displayed businesses by category
 	filterByCategory(category) {
 		let businesses = [];
+		let owned;
 		if (this.displayed == "owned") {
 			businesses = this.ownedBusinessData;
+			owned = true;
 		} else {
 			businesses = this.unownedBusinessData;
+			owned = false;
 		}
 
 		// Display all businesses
 		if (category == "all") {
 			for (const business of businesses) {
-				const businessHTML = document.getElementById(String(business.business_id));
-				businessHTML.style.display = "inline";
+				if (owned) {
+					const businessHTML = document.getElementById(String(business.owned_business_id));
+					businessHTML.style.display = "inline";
+				} else {
+					const businessHTML = document.getElementById(String(business.business_id));
+					businessHTML.style.display = "inline";
+				}
 			}
+
 			for (const categoryButton of categoryButtons) {
 				if (categoryButton.id != "all") {
 					categoryButton.classList.remove("selected");
@@ -96,7 +105,13 @@ class BusinessDisplay {
 		}
 
 		for (const business of businesses) {
-			const businessHTML = document.getElementById(String(business.business_id));
+			let businessHTML;
+			if (owned) {
+				businessHTML = document.getElementById(String(business.owned_business_id));
+			} else {
+				businessHTML = document.getElementById(String(business.business_id));
+			}
+
 			const type = Array.from(businessHTML.getElementsByClassName("type"))[0].getHTML();
 			if (type != category) {
 				businessHTML.style.display = "none";
@@ -117,7 +132,7 @@ class BusinessDisplay {
 	// Display all owned businesses
 	displayOwnedBusinesses() {
 		for (const business of this.ownedBusinessData) {
-			const businessHTML = document.getElementById(String(business.business_id));
+			const businessHTML = document.getElementById(String(business.owned_business_id));
 			businessHTML.style.display = "inline";
 		}
 
@@ -136,7 +151,7 @@ class BusinessDisplay {
 		}
 
 		for (const business of this.ownedBusinessData) {
-			const businessHTML = document.getElementById(String(business.business_id));
+			const businessHTML = document.getElementById(String(business.owned_business_id));
 			businessHTML.style.display = "none";
 		}
 		this.displayed = "unowned";

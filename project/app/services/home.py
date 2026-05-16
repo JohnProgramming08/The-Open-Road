@@ -17,7 +17,7 @@ class HomeService:
 		for business in businesses:
 			unowned = True
 			for owned_business in owned:
-				if business["business_id"] == owned_business["business_id"]:
+				if business["business_id"] == owned_business["owned_business_id"]:
 					unowned = False
 					break # No point checking the rest
 			
