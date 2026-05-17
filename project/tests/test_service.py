@@ -134,6 +134,53 @@ def test_update_owned_business_data(one_owned_business_app):
 		service = TimeService(1)
 		assert service.update_owned_business_data() == False
 
+def test_raid_business(one_owned_business_app):
+	data = {
+		"status": "ACTIVE",
+		"stock_level": 67,
+		"supplies_level": 67,
+		"production_ceased_raided": 2,
+		"setup_started": True
+	}
+	with one_owned_business_app.app_context():
+		service = TimeService(1)
+		service.raid_business(data)
+		assert data["production_ceased_raided"] == 3
+		assert data["status"] != "ACTIVE"
+		assert data["setup_started"] == False
+		assert data["stock_level"] == 0
+		assert data["supplies_level"] == 0
+
+def test_sale_failed(one_owned_business_app):
+	data = {
+		"stock_level": 100,
+		"sale_started": True,
+		"total_sales": 3,
+		"sale_location": "Los Santos",
+		"total_los_santos_sales": 2,
+		"total_blaine_county_sales": 1
+	}
+	with one_owned_business_app.app_context():
+		service = TimeService(1)
+		service.sale_failed(data)
+		assert data["stock_level"] == 80
+		assert data["sale_started"] == False
+		assert data["total_sales"] == 4
+		assert data["sale_location"] == "Los Santos"
+		assert data["total_los_santos_sales"] == 3
+		assert data["total_blaine_county_sales"] == 1
+
+def test_resupply_failed(one_owned_business_app):
+	data = {
+		"supplies_bought": True,
+		"total_resupplies": 6
+	}
+	with one_owned_business_app.app_context():
+		service = TimeService(1)
+		service.resupply_failed(data)
+		assert data["supplies_bought"] == False
+		assert data["total_resupplies"] == 7
+
 # Business management service
 def test_get_summary_data(one_owned_business_app):
 	with one_owned_business_app.app_context():

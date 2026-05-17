@@ -32,7 +32,10 @@ def test_update_business_time_data(one_owned_business_app):
 		"supplies_level": 67,
 		"supplies_bought": True,
 		"setup_started": False,
-		"status": "ACTIVE"
+		"status": "ACTIVE",
+		"production_ceased_supplies": 0,
+		"production_ceased_capacity": 0,
+		"production_ceased_raided": 0
 	}
 
 	with one_owned_business_app.app_context():

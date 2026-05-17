@@ -79,7 +79,7 @@ def test_select_user_movey_invalid(one_user_app):
 def test_get_owned_business_time_data_valid(one_owned_business_app):
 	with one_owned_business_app.app_context():
 		data = Select.select_owned_business_time_data(1)
-		assert len(data) == 26
+		assert len(data) == 29
 		assert data["setup_started"] == False
 
 def test_get_owned_business_time_data_invalid(one_owned_business_app):

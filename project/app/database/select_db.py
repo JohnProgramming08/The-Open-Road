@@ -126,6 +126,10 @@ class Select:
 		res["security_upgrade_bought"] = owned_business.security_upgrade_bought
 		res["equipment_upgrade_bought"] = owned_business.equipment_upgrade_bought
 
+		res["production_ceased_supplies"] = owned_business.production_ceased_supplies
+		res["production_ceased_raided"] = owned_business.production_ceased_raided
+		res["production_ceased_capacity"] = owned_business.production_ceased_capacity
+
 		return res 
 	
 	# Get the last time the user logged in

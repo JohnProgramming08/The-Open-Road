@@ -33,6 +33,10 @@ class Update:
 		business.total_blaine_county_sales = updated_data["total_blaine_county_sales"]
 		business.successful_blaine_county_sales = updated_data["successful_blaine_county_sales"]
 		business.sale_started = updated_data["sale_started"]
+
+		business.production_ceased_supplies = updated_data["production_ceased_supplies"]
+		business.production_ceased_capacity = updated_data["production_ceased_capacity"]
+		business.production_ceased_raided = updated_data["production_ceased_raided"]
 		
 		business.total_resupplies = updated_data["total_resupplies"]
 		business.successful_resupplies = updated_data["successful_resupplies"]
