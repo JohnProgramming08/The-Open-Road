@@ -1,5 +1,5 @@
 import time
-from flask import render_template, Blueprint, redirect, url_for
+from flask import render_template, Blueprint, session
 from app.services import BusinessManagementService, TimeService
 from app.forms import BusinessManagementForm
 
@@ -7,6 +7,9 @@ business_management_bp = Blueprint("business_management", __name__)
 
 @business_management_bp.route("/business_management/<int:user_id>/<int:owned_business_id>", methods=["GET", "POST"])
 def business_management(user_id: int, owned_business_id: int):
+	if session["id"] != user_id:
+		return "Please don't do that."
+	
 	form = BusinessManagementForm()
 	time_service = TimeService(user_id)
 	time_service.update_owned_business_data()

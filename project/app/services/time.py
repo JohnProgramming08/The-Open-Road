@@ -112,7 +112,7 @@ class TimeService:
 				business["supply_usage"] = round(0.75 * business["supply_usage"])
 
 			# Sale made
-			if current_time >= business["sale_finish_time"] and business["sale_started"] and not sale_fail:
+			if current_time >= business["sale_finish_time"] and business["sale_started"] and not sale_fail and business["status"] != "INACTIVE - PENDING SET UP":
 				change_made = True
 				business["status"] = "ACTIVE"
 				self.make_sale(business)
@@ -141,7 +141,7 @@ class TimeService:
 				business["status"] = "SUSPENDED"
 
 			# Supplies arrived
-			if current_time >= business["supply_arrive_time"] and business["supplies_bought"] and not resupply_fail:
+			if current_time >= business["supply_arrive_time"] and business["supplies_bought"] and not resupply_fail and business["status"] != "INACTIVE - PENDING SET UP":
 				change_made = True
 				business["status"] = "ACTIVE"
 				self.resupply(business)

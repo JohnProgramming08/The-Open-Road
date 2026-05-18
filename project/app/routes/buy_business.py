@@ -1,4 +1,4 @@
-from flask import render_template, Blueprint, redirect, url_for
+from flask import render_template, Blueprint, session
 from app.services import BuyBusinessService, MoneyService
 from app.forms import BuyBusinessForm
 
@@ -6,6 +6,9 @@ buy_business_bp = Blueprint("buy_business", __name__)
 
 @buy_business_bp.route("/buy_business/<int:user_id>/<int:business_id>", methods=["GET", "POST"])
 def buy_business(user_id: int, business_id: int):
+	if session["id"] != user_id:
+		return "Please don't do that."
+	
 	form = BuyBusinessForm()
 	service = BuyBusinessService(business_id, user_id)
 	business_data = service.get_business_data()

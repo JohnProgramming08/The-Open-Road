@@ -1,4 +1,4 @@
-from flask import render_template, Blueprint, redirect, url_for
+from flask import render_template, Blueprint, redirect, url_for, session
 from app.services import IntroService
 from app.forms import IntroForm
 
@@ -24,6 +24,7 @@ def intro():
 		if user_id == -1:
 			return render_template("index.html", form=form, error="Your login details are incorrect.")
 		
+		session["id"] = user_id
 		return redirect(url_for("home.home", id=user_id))
 	
 	# User is attempting to sign up
@@ -32,4 +33,5 @@ def intro():
 		if user_id == -1:
 			return render_template("index.html", form=form, error="That username is taken.")
 		
+		session["id"] = user_id
 		return redirect(url_for("home.home", id=user_id))

@@ -1,10 +1,13 @@
-from flask import render_template, Blueprint, redirect, url_for
+from flask import render_template, Blueprint, session
 from app.services import HomeService, TimeService, MoneyService
 
 home_bp = Blueprint("home", __name__)
 
 @home_bp.route("/home/<int:id>")
 def home(id: int):
+	if session["id"] != id:
+		return "Please don't do that."
+	
 	time_service = TimeService(id)
 	time_service.update_owned_business_data()
 

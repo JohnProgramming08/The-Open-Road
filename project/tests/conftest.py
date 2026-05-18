@@ -16,7 +16,11 @@ def app():
 
 @pytest.fixture
 def client(app):
-	return app.test_client()
+	res_client = app.test_client()
+	with res_client.session_transaction() as session:
+		session["id"] = 1
+	
+	return res_client
 
 # App with one user
 @pytest.fixture
@@ -41,7 +45,12 @@ def one_hashed_user_app(app):
 # Test client, one user with hashed password
 @pytest.fixture
 def one_hashed_user_client(one_hashed_user_app):
-	return one_hashed_user_app.test_client()
+	res_client = one_hashed_user_app.test_client()
+
+	with res_client.session_transaction() as session:
+		session["id"] = 1
+	
+	return res_client
 
 # App with a business location and type
 @pytest.fixture
@@ -64,7 +73,12 @@ def one_business_user_app(business_location_type_app):
 # Test client with a business and a user
 @pytest.fixture
 def one_business_user_client(one_business_user_app):
-	return one_business_user_app.test_client()
+	res_client = one_business_user_app.test_client()
+
+	with res_client.session_transaction() as session:
+		session["id"] = 1
+	
+	return res_client
 
 # App with an owned business
 @pytest.fixture
@@ -77,4 +91,9 @@ def one_owned_business_app(one_business_user_app):
 # Test client with an owned business
 @pytest.fixture
 def one_owned_business_client(one_owned_business_app):
-	return one_owned_business_app.test_client()
+	res_client = one_owned_business_app.test_client()
+
+	with res_client.session_transaction() as session:
+		session["id"] = 1
+	
+	return res_client
